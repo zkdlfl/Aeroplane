@@ -12,19 +12,37 @@ public class PlayerBase
             {1,0},
         };
     int[] Direction = { }; // 1 - Up | 2 - Right | 3 - Down | 4 - Left
-    int index;
+    int StartIndex;
+    int GoalIndex;
 
 
     public PlayerBase(Transform transform, float speed)
     {
         this.playerTransform = transform;
         this.movementSpeed = speed;
-        this.index = 0;
+        this.StartIndex = 0;
+        this.GoalIndex = BlueLocations.GetLength(0) - 1;
     }
     public void Pressed()
     {
-        index++;
-        playerTransform.position = playerTransform.position + new Vector3(BlueLocations[index, 0] * movementSpeed * Time.deltaTime, BlueLocations[index, 1] * movementSpeed * Time.deltaTime, 0);
+        if (StartIndex >= BlueLocations.Length)
+        {
+            StartIndex = 0;
+        }
+
+        playerTransform.position = new Vector3(BlueLocations[StartIndex, 0] * movementSpeed * Time.deltaTime, BlueLocations[StartIndex, 1] * movementSpeed * Time.deltaTime, 0);
+
+
+        if (StartIndex == GoalIndex)
+        {
+            PlaneFinished();
+            StartIndex = 0;
+        }
+        StartIndex++;
+
+    }
+    public void PlaneFinished()
+    {
 
     }
 }
