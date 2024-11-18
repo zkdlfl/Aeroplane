@@ -161,7 +161,7 @@ public class Coordinate : MonoBehaviour
         list_coordinates.AddRange(batch);
         base_coordinates.AddRange(group);
     }
-    void Update()
+
     private Dictionary<string, List<Vector3>> paths;
 
     void Awake()
