@@ -16,14 +16,18 @@ public class Coordinate : MonoBehaviour
     }
 }
 
-public class Color_Location{
-    public List<xy> home_base = new List<xy>();
-    public List<xy> runway = new List<xy>();
-    public Color_Location(List<xy> current, List<xy> run){
-        this.home_base = current;
-        this.runway = run;
+    public class Color_Location{
+        public List<xy> home_base = new List<xy>();
+        public List<xy> runway = new List<xy>();
+        public Color_Location(int start, List<xy> base_coordinates){
+            for(int a = start; a<start+5; a++){
+                    this.home_base.Add(base_coordinates[a]);
+            }
+            for(int b = start+5; b<start+11; b++){
+                    this.runway.Add(base_coordinates[b]);
+            }
+       }
     }
-}
     public ArrayList list_coordinates;
     public List<xy> base_coordinates;
 
@@ -87,17 +91,19 @@ public class Color_Location{
         };
         var group = new List<xy>
         {
-            new xy(211.00, 461.00), //0
+            new xy(203.00, 369.00), // 1st one of the list is the first step outside the hanger
+            new xy(211.00, 461.00), // HOME BASE
             new xy(260.00, 459.00),
             new xy(210.00, 412.00),
-            new xy(260.00, 413.00), //
-            new xy(257.00, 268.00),
+            new xy(260.00, 413.00), 
+            new xy(257.00, 268.00), // RUNWAY TO LEAVE
             new xy(281.00, 268.00),
             new xy(304.00, 268.00),
             new xy(325.00, 268.00),
             new xy(346.00, 267.00),
-            new xy(369.00, 269.00), // 9
+            new xy(369.00, 269.00), //
 
+            new xy(492.00, 475.00),
             new xy(535.00, 461.00), 
             new xy(583.00, 461.00),
             new xy(536.00, 412.00),
@@ -109,6 +115,7 @@ public class Color_Location{
             new xy(397.00, 323.00),
             new xy(397.00, 301.00),
 
+            new xy(587.00, 164.00),
             new xy(535.00, 122.00),
             new xy(584.00, 120.00),
             new xy(536.00, 74.00),
@@ -120,6 +127,7 @@ public class Color_Location{
             new xy(446.00, 268.00),
             new xy(425.00, 266.00),
 
+            new xy(300.00, 63.00),
             new xy(211.00, 123.00),
             new xy(259.00, 121.00),
             new xy(211.00, 74.00),
@@ -133,6 +141,10 @@ public class Color_Location{
         };
         list_coordinates.AddRange(batch);
         base_coordinates.AddRange(group);
+        Color_Location yellow = new Color_Location(0, base_coordinates);
+        Color_Location green = new Color_Location(11, base_coordinates);
+        Color_Location blue = new Color_Location(22, base_coordinates);
+        Color_Location red = new Color_Location(33, base_coordinates);
     }
 
     private Dictionary<string, List<Vector3>> paths;
