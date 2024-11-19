@@ -28,12 +28,13 @@ public class Coordinate : MonoBehaviour
             }
        }
     }
-    public ArrayList list_coordinates;
+    public List<xy> list_coordinates;
     public List<xy> base_coordinates;
 
     // Start is called before the first frame update
     void Start(){
-        list_coordinates = new ArrayList();
+        list_coordinates = new List<xy>();
+        base_coordinates = new List<xy>();
         var batch = new List<xy>
         {
             new xy(220.00, 352.00),

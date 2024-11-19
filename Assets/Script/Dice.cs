@@ -6,11 +6,14 @@ public class Dice : MonoBehaviour
     private Sprite[] diceSides;
     private SpriteRenderer rend;
 
+    public bool Rolled;
+    public int randomDiceSide;
+
     private void Start()
     {
         rend = GetComponent<SpriteRenderer>();
         diceSides = new Sprite[6];
-
+        Rolled = false;
         for (int i = 0; i < 6; i++)
         {
             diceSides[i] = Resources.Load<Sprite>($"Sprites/dicesides/{i + 1}");
@@ -37,7 +40,7 @@ public class Dice : MonoBehaviour
 
     private IEnumerator RollDice()
     {
-        int randomDiceSide = 0;
+         randomDiceSide = 0;
 
         for (int i = 0; i < 10; i++)
         {
@@ -52,5 +55,7 @@ public class Dice : MonoBehaviour
         rend.sprite = diceSides[randomDiceSide] != null ? diceSides[randomDiceSide] : diceSides[0];
 
         Debug.Log("Dice Roll Result: " + (randomDiceSide + 1));
+        Rolled = true;
+
     }
 }

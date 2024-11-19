@@ -12,6 +12,10 @@ public class ChessPiece : MonoBehaviour
     protected CircleCollider2D circleCollider;
     public bool isMoving;
 
+    public Dice GameDie;
+
+
+
     protected virtual void Start()
     {
         playerTransform = transform;
@@ -20,19 +24,34 @@ public class ChessPiece : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
         isMoving = false;
+
+        GameDie = FindObjectOfType<Dice>();
+
     }
 
     public void Initialize(List<Vector3> planePath)
     {
         path = planePath;
         currentPositionIndex = 0;
-        playerTransform.position = path[0]; 
+        playerTransform.position = path[0];
+    }
+    void OnMouseDown()
+    {
+        Debug.Log("pressed1");
+
+        if (GameDie.Rolled)
+        {
+            Debug.Log("pressed");
+            Move(GameDie.randomDiceSide + 1);
+            GameDie.Rolled = false;
+        }
     }
 
     public void Move(int steps)
     {
+
         if (isMoving || currentPositionIndex + steps >= path.Count)
-            return; 
+            return;
 
         StartCoroutine(MoveSteps(steps));
     }
@@ -53,9 +72,10 @@ public class ChessPiece : MonoBehaviour
         isMoving = false;
         Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
     }
-
-    protected void OnMouseDown()
-    {
-        Move(1);
-    }
+    /*
+        protected void OnMouseDown()
+        {
+            Move(1);
+        }
+        */
 }
