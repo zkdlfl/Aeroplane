@@ -25,12 +25,12 @@ public class Plane : MonoBehaviour
     public TextMeshProUGUI blue_Text;
     public TextMeshProUGUI green_Text;
     public TextMeshProUGUI player_turn_text;
-
-    public string PlayerTurn;
     Player_Plane yellow_profile = new Player_Plane(4, "Yellow", 0);
     Player_Plane red_profile = new Player_Plane(4, "Red", 0);
     Player_Plane blue_profile = new Player_Plane(4, "Blue", 0);
     Player_Plane green_profile = new Player_Plane(4, "Green", 0);
+
+    public string PlayerTurn;
 
     // Start is called before the first frame update
     void Start()

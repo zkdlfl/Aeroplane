@@ -128,7 +128,7 @@ public class Coordinate : MonoBehaviour
             new xy(584.00, 120.00),
             new xy(536.00, 74.00),
             new xy(585.00, 72.00),
-            new xy(535.00, 267.00),
+            new xy(535.00, 267.00), //
             new xy(512.00, 268.00),
             new xy(492.00, 268.00),
             new xy(468.00, 267.00),
@@ -140,7 +140,7 @@ public class Coordinate : MonoBehaviour
             new xy(259.00, 121.00),
             new xy(211.00, 74.00),
             new xy(260.00, 74.00),
-            new xy(397.00, 119.00),
+            new xy(397.00, 119.00), //
             new xy(397.00, 141.00),
             new xy(397.00, 166.00),
             new xy(396.00, 187.00),
@@ -162,17 +162,123 @@ public class Coordinate : MonoBehaviour
         paths = new Dictionary<string, List<Vector3>>();
         paths["Red"] = new List<Vector3>
     {
-        new Vector3(0, 0, 0),
-        new Vector3(1, 0, 0),
-        new Vector3(2, 1, 0),  // Add your path coordinates
+        new Vector3(220, 352, 0), // 2nd step for Yellow
+        new Vector3(247, 361, 0),
+        new Vector3(273, 360, 0),
+        new Vector3(301, 350, 0),
+        new Vector3(319, 372, 0),
+        new Vector3(309, 401, 0),
+        new Vector3(308, 428, 0),
+        new Vector3(320, 455, 0),
+        new Vector3(346, 466, 0),
+        new Vector3(372, 466, 0),
+        new Vector3(397, 463, 0), // step before green's hanger
+        new Vector3(423, 467, 0),
+        new Vector3(447, 466, 0),
+        new Vector3(474, 455, 0), // 2nd step for green
+        new Vector3(484, 429, 0),
+        new Vector3(484, 402, 0),
+        new Vector3(474, 371, 0),
+        new Vector3(492, 352, 0),
+        new Vector3(521, 361, 0),
+        new Vector3(546, 362, 0),
+        new Vector3(572, 350, 0), 
+        new Vector3(581, 322, 0),
+        new Vector3(581, 295, 0),
+        new Vector3(581, 268, 0), // step before red's hanger
+        new Vector3(580, 241, 0),
+        new Vector3(581, 216, 0),
+        new Vector3(572, 186, 0), // 2nd step for red
+        new Vector3(545, 175, 0),
+        new Vector3(520, 177, 0),
+        new Vector3(493, 185, 0),
+        new Vector3(474, 166, 0),
+        new Vector3(484, 135, 0),
+        new Vector3(483, 109, 0),
+        new Vector3(474, 83, 0),
+        new Vector3(447, 71, 0),
+        new Vector3(422, 71, 0), 
+        new Vector3(396, 74, 0), // step before blue's hanger
+        new Vector3(371, 72, 0),
+        new Vector3(346, 71, 0), 
+        new Vector3(319, 82, 0), // 2nd step for blue
+        new Vector3(310, 110, 0),
+        new Vector3(310, 135, 0),
+        new Vector3(321, 166, 0),
+        new Vector3(300, 187, 0),
+        new Vector3(272, 177, 0),
+        new Vector3(247, 177, 0),
+        new Vector3(220, 189, 0),
+        new Vector3(213, 216, 0), 
+        new Vector3(213, 243, 0), 
+        new Vector3(213, 268, 0), // step before yellow's hanger
+        new Vector3(212, 295, 0),
+        new Vector3(213, 321, 0)
+
     };
         paths["RedBase"] = new List<Vector3>
         {
-        new Vector3(1, 1, 0),
-        new Vector3(2, 2, 0),
-        new Vector3(3, 3, 0), 
-        new Vector3(4, 4, 0),  // Add your path coordinates
-
+        new Vector3(211, 123, 0),
+        new Vector3(259, 121, 0),
+        new Vector3(211, 74, 0), 
+        new Vector3(260, 74, 0)  // Add your path coordinates
+    };
+        paths["YellowBase"] = new List<Vector3>
+        {
+        new Vector3(211, 461, 0),
+        new Vector3(260, 459, 0),
+        new Vector3(210, 412, 0), 
+        new Vector3(260, 413, 0)  // Add your path coordinates
+    };
+        paths["BlueBase"] = new List<Vector3>
+        {
+        new Vector3(535, 461, 0),
+        new Vector3(583, 461, 0),
+        new Vector3(536, 412, 0), 
+        new Vector3(584, 411, 0)  // Add your path coordinates
+    };
+        paths["GreenBase"] = new List<Vector3>
+        {
+        new Vector3(535, 122, 0),
+        new Vector3(584, 120, 0),
+        new Vector3(536, 74, 0), 
+        new Vector3(585, 72, 0)  // Add your path coordinates
+    };
+        paths["YellowHanger"] = new List<Vector3> // filled out
+        {
+        new Vector3(257, 268, 0), // RUNWAY TO LEAVE
+        new Vector3(281, 268, 0),
+        new Vector3(304, 268, 0),
+        new Vector3(325, 268, 0),
+        new Vector3(346, 267, 0),
+        new Vector3(369, 269, 0), //
+    };
+        paths["GreenHanger"] = new List<Vector3> // filled out
+        {
+        new Vector3(397, 416, 0), // RUNWAY TO LEAVE
+        new Vector3(396, 393, 0), 
+        new Vector3(397, 368, 0),
+        new Vector3(397, 345, 0),
+        new Vector3(397, 323, 0),
+        new Vector3(397, 301, 0),
+    };
+        paths["RedHanger"] = new List<Vector3> // filled out
+        {
+        new Vector3(535, 268, 0), // RUNWAY TO LEAVE
+        new Vector3(512, 268, 0),
+        new Vector3(492, 268, 0),
+        new Vector3(468, 268, 0),
+        new Vector3(446, 268, 0),
+        new Vector3(425, 268, 0), //
+    };
+        paths["BlueHanger"] = new List<Vector3> // filled out
+        {
+        new Vector3(397, 119, 0), // RUNWAY TO LEAVE
+        new Vector3(397, 141, 0),
+        new Vector3(397, 166, 0),
+        new Vector3(397, 187, 0),
+        new Vector3(397, 210, 0),
+        new Vector3(397, 236, 0), //
     };
         Debug.Log("Coordinate paths initialized.");
     }

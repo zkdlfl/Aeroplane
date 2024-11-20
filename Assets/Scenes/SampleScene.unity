@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 1067963131}
   - component: {fileID: 1067963135}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,7 +1126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5a9ea5e12b8434fb65bdc662472f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redPiecePrefab: {fileID: 1193802835}
+  piecePrefab: {fileID: 0}
+  mainPathKey: 
+  basePathKey: 
 --- !u!1 &1353172073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,6 +1759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1821122762}
   - component: {fileID: 1821122763}
+  - component: {fileID: 1821122764}
   m_Layer: 0
   m_Name: Coordinate
   m_TagString: Untagged
@@ -1789,6 +1792,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f31ca34b66cd4681829734a4cf6f569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1821122764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821122760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f127e88063a9c492c85eaf4f13d29034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1858618890
@@ -2071,7 +2086,7 @@ GameObject:
   - component: {fileID: 2040670207}
   - component: {fileID: 2040670206}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PlayerTurn_SubTitles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
