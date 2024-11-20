@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RedPlayer : MonoBehaviour
 {
-    public GameObject redPiecePrefab; 
+    public GameObject redPiecePrefab;
     private List<RedPiece> redPieces = new List<RedPiece>();
     private Coordinate coordinateManager;
     private List<Vector3> redPath;
@@ -34,12 +34,14 @@ public class RedPlayer : MonoBehaviour
         {
             GameObject redPieceObject = Instantiate(redPiecePrefab, redPath[0], Quaternion.identity);
             RedPiece redPiece = redPieceObject.GetComponent<RedPiece>();
-            
+
             if (redPiece != null)
             {
-                redPiece.Initialize(redPath);
+                redPiece.Initialize(redPath, coordinateManager.GetPath("RedBase"));
                 redPieceObject.name = $"Red Piece {i + 1}";
                 redPieces.Add(redPiece);
+                //         Debug.Log(string.Join(", ", redPath.Select(v => v.ToString())));
+
             }
         }
     }

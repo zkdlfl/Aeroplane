@@ -7,32 +7,39 @@ using UnityEngine;
 
 public class Coordinate : MonoBehaviour
 {
-    public class xy{
-    public double x;
-    public double y;
-    public xy(double x, double y){
-        this.x = x;
-        this.y = y;
+    public class xy
+    {
+        public double x;
+        public double y;
+        public xy(double x, double y)
+        {
+            this.x = x;
+            this.y = y;
+        }
     }
-}
 
-    public class Color_Location{
+    public class Color_Location
+    {
         public List<xy> home_base = new List<xy>();
         public List<xy> runway = new List<xy>();
-        public Color_Location(int start, List<xy> base_coordinates){
-            for(int a = start; a<start+5; a++){
-                    this.home_base.Add(base_coordinates[a]);
+        public Color_Location(int start, List<xy> base_coordinates)
+        {
+            for (int a = start; a < start + 5; a++)
+            {
+                this.home_base.Add(base_coordinates[a]);
             }
-            for(int b = start+5; b<start+11; b++){
-                    this.runway.Add(base_coordinates[b]);
+            for (int b = start + 5; b < start + 11; b++)
+            {
+                this.runway.Add(base_coordinates[b]);
             }
-       }
+        }
     }
     public List<xy> list_coordinates;
     public List<xy> base_coordinates;
 
     // Start is called before the first frame update
-    void Start(){
+    void Start()
+    {
         list_coordinates = new List<xy>();
         base_coordinates = new List<xy>();
         var batch = new List<xy>
@@ -96,7 +103,7 @@ public class Coordinate : MonoBehaviour
             new xy(211.00, 461.00), // HOME BASE
             new xy(260.00, 459.00),
             new xy(210.00, 412.00),
-            new xy(260.00, 413.00), 
+            new xy(260.00, 413.00),
             new xy(257.00, 268.00), // RUNWAY TO LEAVE
             new xy(281.00, 268.00),
             new xy(304.00, 268.00),
@@ -105,7 +112,7 @@ public class Coordinate : MonoBehaviour
             new xy(369.00, 269.00), //
 
             new xy(492.00, 475.00),
-            new xy(535.00, 461.00), 
+            new xy(535.00, 461.00),
             new xy(583.00, 461.00),
             new xy(536.00, 412.00),
             new xy(584.00, 411.00), //
@@ -151,16 +158,24 @@ public class Coordinate : MonoBehaviour
     private Dictionary<string, List<Vector3>> paths;
 
     void Awake()
-{
-    paths = new Dictionary<string, List<Vector3>>();
-    paths["Red"] = new List<Vector3>
+    {
+        paths = new Dictionary<string, List<Vector3>>();
+        paths["Red"] = new List<Vector3>
     {
         new Vector3(0, 0, 0),
         new Vector3(1, 0, 0),
         new Vector3(2, 1, 0),  // Add your path coordinates
     };
-    Debug.Log("Coordinate paths initialized.");
-}
+        paths["RedBase"] = new List<Vector3>
+        {
+        new Vector3(1, 1, 0),
+        new Vector3(2, 2, 0),
+        new Vector3(3, 3, 0), 
+        new Vector3(4, 4, 0),  // Add your path coordinates
+
+    };
+        Debug.Log("Coordinate paths initialized.");
+    }
 
     public List<Vector3> GetPath(string color)
     {

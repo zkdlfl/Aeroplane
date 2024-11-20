@@ -7,12 +7,14 @@ public class ChessPiece : MonoBehaviour
     public Transform playerTransform;
     public float movementSpeed;
     public List<Vector3> path;
-    public int currentPositionIndex;
     protected SpriteRenderer spriteRenderer;
     protected CircleCollider2D circleCollider;
     public bool isMoving;
+    public bool isOutOfBase;
 
     public Dice GameDie;
+    public List<Vector3> playerBase;
+    public int currentPositionIndex;
 
 
 
@@ -24,16 +26,18 @@ public class ChessPiece : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
         isMoving = false;
+        isOutOfBase = false;
 
         GameDie = FindObjectOfType<Dice>();
 
     }
 
-    public void Initialize(List<Vector3> planePath)
+    public void Initialize(List<Vector3> planePath, List<Vector3> baseCoordinates)
     {
         path = planePath;
+        playerBase = baseCoordinates;
         currentPositionIndex = 0;
-        playerTransform.position = path[0];
+        playerTransform.position = playerBase[0];
     }
     void OnMouseDown()
     {
@@ -42,8 +46,23 @@ public class ChessPiece : MonoBehaviour
         if (GameDie.Rolled)
         {
             Debug.Log("pressed");
-            Move(GameDie.randomDiceSide + 1);
-            GameDie.Rolled = false;
+            if (isOutOfBase)
+            {
+                Move(GameDie.randomDiceSide + 1);
+                GameDie.Rolled = false;
+            }
+            else
+            {
+                if (GameDie.randomDiceSide == 5)
+                {
+                    Move(0);
+                    Move(GameDie.randomDiceSide + 1);
+                    isOutOfBase = true;
+                    GameDie.Rolled = false;
+
+                }
+            }
+
         }
     }
 
@@ -61,16 +80,18 @@ public class ChessPiece : MonoBehaviour
         isMoving = true;
         for (int i = 0; i < steps; i++)
         {
-            currentPositionIndex++;
-            Vector3 nextPosition = path[currentPositionIndex];
+            Vector3 nextPosition = path[currentPositionIndex+1];
             while (Vector3.Distance(playerTransform.position, nextPosition) > 0.01f)
             {
                 playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition, movementSpeed * Time.deltaTime);
                 yield return null;
             }
+            currentPositionIndex++;
+
         }
         isMoving = false;
         Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
+
     }
     /*
         protected void OnMouseDown()
