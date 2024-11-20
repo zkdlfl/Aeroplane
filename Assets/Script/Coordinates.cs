@@ -216,6 +216,7 @@ public class Coordinate : MonoBehaviour
         new Vector3(213, 321, 0)
 
     };
+
         paths["RedBase"] = new List<Vector3>
         {
         new Vector3(211, 123, 0),
@@ -244,8 +245,11 @@ public class Coordinate : MonoBehaviour
         new Vector3(536, 74, 0), 
         new Vector3(585, 72, 0)  // Add your path coordinates
     };
+
+        // first coordinates are the first step that the planes take before going on the color board
         paths["YellowHanger"] = new List<Vector3> // filled out
         {
+        new Vector3(203, 369, 0),
         new Vector3(257, 268, 0), // RUNWAY TO LEAVE
         new Vector3(281, 268, 0),
         new Vector3(304, 268, 0),
@@ -255,6 +259,7 @@ public class Coordinate : MonoBehaviour
     };
         paths["GreenHanger"] = new List<Vector3> // filled out
         {
+        new Vector3(492, 475, 0),
         new Vector3(397, 416, 0), // RUNWAY TO LEAVE
         new Vector3(396, 393, 0), 
         new Vector3(397, 368, 0),
@@ -262,8 +267,9 @@ public class Coordinate : MonoBehaviour
         new Vector3(397, 323, 0),
         new Vector3(397, 301, 0),
     };
-        paths["RedHanger"] = new List<Vector3> // filled out
+        paths["RedHanger"] = new List<Vector3> // filled
         {
+        new Vector3(587, 164, 0),
         new Vector3(535, 268, 0), // RUNWAY TO LEAVE
         new Vector3(512, 268, 0),
         new Vector3(492, 268, 0),
@@ -273,6 +279,7 @@ public class Coordinate : MonoBehaviour
     };
         paths["BlueHanger"] = new List<Vector3> // filled out
         {
+        new Vector3(300, 63, 0),
         new Vector3(397, 119, 0), // RUNWAY TO LEAVE
         new Vector3(397, 141, 0),
         new Vector3(397, 166, 0),
