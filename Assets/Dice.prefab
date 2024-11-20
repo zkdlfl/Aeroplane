@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2673345856461313930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.52, y: 2.59, z: 0.029419191}
+  m_LocalPosition: {x: 6.52, y: 0.18, z: 0.029419191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02479258279140b7bb8ea727a42bf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rolled: 0
+  randomDiceSide: 0
 --- !u!212 &1471476401213796535
 SpriteRenderer:
   m_ObjectHideFlags: 0
