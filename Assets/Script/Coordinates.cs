@@ -156,6 +156,75 @@ public class Coordinate : MonoBehaviour
         Color_Location blue = new Color_Location(22, base_coordinates);
         Color_Location red = new Color_Location(33, base_coordinates);
         mainPathsOriginal = new List<Vector3> {
+
+        new Vector3(3.425f, 0f, 0f),
+
+        new Vector3(3.425f, -0.48f, 0f),
+        new Vector3(3.425f, -0.98f, 0f),
+        new Vector3(3.285f, -1.52f, 0f),
+        new Vector3(2.785f, -1.725f, 0f),
+        new Vector3(2.32f, -1.725f, 0f),
+        new Vector3(1.8f, -1.52f, 0f),
+        new Vector3(1.42f, -1.935f, 0f),
+        new Vector3(1.62f, -2.5f, 0f),
+        new Vector3(1.62f, -2.98f, 0f),
+        new Vector3(1.43f, -3.5f, 0f),
+        new Vector3(0.935f, -3.7f, 0f),
+        new Vector3(1.471f, -3.7f, 0f),
+
+
+new Vector3(0f, -3.65f, 0f),
+
+new Vector3(-1.471f, -3.7f, 0f),
+new Vector3(-0.935f, -3.7f, 0f),
+new Vector3(-1.43f, -3.5f, 0f),
+new Vector3(-1.62f, -2.98f, 0f),
+new Vector3(-1.62f, -2.5f, 0f),
+new Vector3(-1.42f, -1.935f, 0f),
+new Vector3(-1.8f, -1.52f, 0f),
+new Vector3(-2.32f, -1.725f, 0f),
+new Vector3(-2.785f, -1.725f, 0f),
+new Vector3(-3.285f, -1.52f, 0f),
+new Vector3(-3.425f, -0.98f, 0f),
+new Vector3(-3.425f, -0.48f, 0f),
+
+
+new Vector3(-3.425f, 0f, 0f),
+
+new Vector3(-3.425f, 0.48f, 0f),
+new Vector3(-3.425f, 0.98f, 0f),
+new Vector3(-3.285f, 1.52f, 0f),
+new Vector3(-2.785f, 1.725f, 0f),
+new Vector3(-2.32f, 1.725f, 0f),
+new Vector3(-1.8f, 1.52f, 0f),
+new Vector3(-1.42f, 1.935f, 0f),
+new Vector3(-1.62f, 2.5f, 0f),
+new Vector3(-1.62f, 2.98f, 0f),
+new Vector3(-1.43f, 3.5f, 0f),
+new Vector3(-0.935f, 3.7f, 0f),
+new Vector3(-1.471f, 3.7f, 0f),
+
+new Vector3(0f, 3.65f, 0f),
+
+new Vector3(1.471f, 3.7f, 0f),
+new Vector3(0.935f, 3.7f, 0f),
+new Vector3(1.43f, 3.5f, 0f),
+new Vector3(1.62f, 2.98f, 0f),
+new Vector3(1.62f, 2.5f, 0f),
+new Vector3(1.42f, 1.935f, 0f),
+new Vector3(1.8f, 1.52f, 0f),
+new Vector3(2.32f, 1.725f, 0f),
+new Vector3(2.785f, 1.725f, 0f),
+new Vector3(3.285f, 1.52f, 0f),
+new Vector3(3.425f, 0.98f, 0f),
+new Vector3(3.425f, 0.48f, 0f)
+
+
+
+
+
+
+            /* old coordinates v.2
         new Vector3(0f, -3.65f, 0f),
 
         new Vector3(-0.47f, -3.7f, 0f),
@@ -226,7 +295,7 @@ public class Coordinate : MonoBehaviour
         new Vector3(1.44f, -3.5f, 0f),
         new Vector3(0.935f, -3.7f, 0f),
         new Vector3(0.47f, -3.7f, 0f)
-
+*/
         };
         canUpdate = true;
     }
