@@ -10,11 +10,12 @@ public class ChessPiece : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected CircleCollider2D circleCollider;
     public bool isMoving;
-    public bool isOutOfBase;
+    public bool isOutOfBase = false;
 
     public Dice GameDie;
     public List<Vector3> playerBase;
     public int currentPositionIndex;
+    public int firstIndex;
 
 
 
@@ -32,11 +33,16 @@ public class ChessPiece : MonoBehaviour
 
     }
 
-    public void Initialize(List<Vector3> planePath, List<Vector3> baseCoordinates, int pieceNumber)
+    public void Initialize(int startIndex, List<Vector3> planePath, List<Vector3> baseCoordinates, int pieceNumber)
     {
         path = planePath;
         playerBase = baseCoordinates;
-        currentPositionIndex = 0;
+        firstIndex = startIndex;
+        currentPositionIndex = startIndex;
+        Debug.Log("start index" + startIndex);
+        Debug.Log("size " + path.Count);
+
+        Debug.Log("start index coords " + path[startIndex]);
         playerTransform.position = playerBase[pieceNumber];
     }
     void OnMouseDown()
@@ -55,11 +61,12 @@ public class ChessPiece : MonoBehaviour
             {
                 if (GameDie.randomDiceSide == 5)
                 {
+                    Debug.Log("MOVING OUT OF BASE, GAMEDIE FALSE");
+
                     Move(0);
                     Move(GameDie.randomDiceSide + 1);
                     isOutOfBase = true;
                     GameDie.Rolled = false;
-
                 }
             }
 
@@ -68,9 +75,9 @@ public class ChessPiece : MonoBehaviour
 
     public void Move(int steps)
     {
-
-        if (isMoving || currentPositionIndex + steps >= path.Count)
+        if (isMoving)
             return;
+
 
         StartCoroutine(MoveSteps(steps));
     }
@@ -80,17 +87,24 @@ public class ChessPiece : MonoBehaviour
         isMoving = true;
         for (int i = 0; i < steps; i++)
         {
-            Vector3 nextPosition = path[currentPositionIndex+1];
+            Debug.Log("move size check " + path.Count);
+
+            Vector3 nextPosition;
+            if (currentPositionIndex + 1 >= path.Count)
+
+                nextPosition = path[(currentPositionIndex + 1) - path.Count];
+            else
+                nextPosition = path[(currentPositionIndex + 1)];
+
             while (Vector3.Distance(playerTransform.position, nextPosition) > 0.01f)
             {
                 playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition, movementSpeed * Time.deltaTime);
                 yield return null;
             }
             currentPositionIndex++;
-
         }
         isMoving = false;
-        Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
+        Debug.Log($"{gameObject.name} reached position {currentPositionIndex - firstIndex}");
 
     }
     /*

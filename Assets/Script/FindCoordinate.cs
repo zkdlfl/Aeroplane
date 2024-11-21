@@ -6,11 +6,12 @@ public class FindCoordinate : MonoBehaviour
 {
     public ArrayList list_coordinates;
     // Start is called before the first frame update
-    void Start(){
+    void Start()
+    {
         list_coordinates = new ArrayList();
 
     }
-    void Update()
+    /* void Update()
     {
         if (Input.GetMouseButtonDown(0)) // 0 = left click, 1 = right click, 2 = middle click
         {
@@ -25,5 +26,5 @@ public class FindCoordinate : MonoBehaviour
         }
         // Debug.Log("HI");
         // Get mouse position in screen coordinates
-    }
+    }*/
 }

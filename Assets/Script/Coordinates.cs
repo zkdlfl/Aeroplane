@@ -18,6 +18,7 @@ public class Coordinate : MonoBehaviour
         }
     }
 
+    public bool canUpdate = false;
     public class Color_Location
     {
         public List<xy> home_base = new List<xy>();
@@ -36,6 +37,7 @@ public class Coordinate : MonoBehaviour
     }
     public List<xy> list_coordinates;
     public List<xy> base_coordinates;
+    public List<Vector3> mainPathsOriginal;
 
     // Start is called before the first frame update
     void Start()
@@ -153,13 +155,88 @@ public class Coordinate : MonoBehaviour
         Color_Location green = new Color_Location(11, base_coordinates);
         Color_Location blue = new Color_Location(22, base_coordinates);
         Color_Location red = new Color_Location(33, base_coordinates);
+        mainPathsOriginal = new List<Vector3> {
+        new Vector3(0f, -3.65f, 0f),
+
+        new Vector3(-0.47f, -3.7f, 0f),
+        new Vector3(-0.935f, -3.7f, 0f),
+        new Vector3(-1.44f, -3.5f, 0f),
+        new Vector3(-1.62f, -2.98f, 0f),
+        new Vector3(-1.62f, -2.5f, 0f),
+        new Vector3(-1.42f, -1.93f, 0f),
+        new Vector3(-1.8f, -1.52f, 0f),
+        new Vector3(-2.32f, -1.715f, 0f),
+        new Vector3(-2.32f, -1.715f, 0f),
+        new Vector3(-2.78f, -1.715f, 0f),
+        new Vector3(-2.81f, -1.715f, 0f),
+        new Vector3(-3.33f, -1.52f, 0f),
+        new Vector3(-3.46f, -0.48f, 0f),
+        new Vector3(-3.46f, -1f, 0f),
+
+
+        new Vector3(-3.46f, 0f, 0f),
+
+        new Vector3(-3.46f, 0.48f, 0f),
+        new Vector3(-3.46f, 1f, 0f),
+        new Vector3(-3.33f, 1.52f, 0f),
+        new Vector3(-2.81f, 1.715f, 0f),
+        new Vector3(-2.78f, 1.715f, 0f),
+        new Vector3(-2.32f, 1.715f, 0f),
+        new Vector3(-2.32f, 1.715f, 0f),
+        new Vector3(-1.8f, 1.52f, 0f),
+        new Vector3(-1.42f, 1.93f, 0f),
+        new Vector3(-1.62f, 2.5f, 0f),
+        new Vector3(-1.62f, 2.98f, 0f),
+        new Vector3(-1.44f, 3.5f, 0f),
+        new Vector3(-0.935f, 3.7f, 0f),
+        new Vector3(-0.47f, 3.7f, 0f),
+
+
+        new Vector3(0f, 3.65f, 0f),
+
+        new Vector3(0.47f, 3.7f, 0f),
+        new Vector3(0.935f, 3.7f, 0f),
+        new Vector3(1.44f, 3.5f, 0f),
+        new Vector3(1.62f, 2.98f, 0f),
+        new Vector3(1.62f, 2.5f, 0f),
+        new Vector3(1.42f, 1.93f, 0f),
+        new Vector3(1.8f, 1.52f, 0f),
+        new Vector3(2.32f, 1.715f, 0f),
+        new Vector3(2.32f, 1.715f, 0f),
+        new Vector3(2.78f, 1.715f, 0f),
+        new Vector3(2.81f, 1.715f, 0f),
+        new Vector3(3.33f, 1.52f, 0f),
+        new Vector3(3.46f, 1f, 0f),
+        new Vector3(3.46f, 0.48f, 0f),
+
+    
+        new Vector3(3.46f, 0f, 0f),
+    
+        new Vector3(3.46f, -0.48f, 0f),
+        new Vector3(3.46f, -1f, 0f),
+        new Vector3(3.33f, -1.52f, 0f),
+        new Vector3(2.81f, -1.715f, 0f),
+        new Vector3(2.78f, -1.715f, 0f),
+        new Vector3(2.32f, -1.715f, 0f),
+        new Vector3(2.32f, -1.715f, 0f),
+        new Vector3(1.8f, -1.52f, 0f),
+        new Vector3(1.42f, -1.93f, 0f),
+        new Vector3(1.62f, -2.5f, 0f),
+        new Vector3(1.62f, -2.98f, 0f),
+        new Vector3(1.44f, -3.5f, 0f),
+        new Vector3(0.935f, -3.7f, 0f),
+        new Vector3(0.47f, -3.7f, 0f)
+
+        };
+        canUpdate = true;
     }
 
-    private Dictionary<string, List<Vector3>> paths;
+    private Dictionary<string, List<Vector3>> paths = new Dictionary<string, List<Vector3>>();
 
     void Awake()
     {
-        paths = new Dictionary<string, List<Vector3>>();
+
+        /*
         paths["Red"] = new List<Vector3>
     {
         new Vector3(2.78f, -1.715f, 0f),
@@ -184,12 +261,65 @@ public class Coordinate : MonoBehaviour
         new Vector3(-1.8f, -1.52f, 0f),
         new Vector3(-2.32f, -1.715f, 0f),
         new Vector3(-2.32f, -1.715f, 0f),
-        new Vector3(-2.78f, -1.715f, 0f)
+        new Vector3(-2.78f, -1.715f, 0f),
+        new Vector3(-2.81f, -1.715f, 0f),
+        new Vector3(-3.33f, -1.52f, 0f),
+        new Vector3(-3.46f, -1f, 0f),
+        new Vector3(-3.46f, -0.48f, 0f),
 
 
+        new Vector3(-3.46f, 0f, 0f),
+
+        new Vector3(-3.46f, 0.48f, 0f),
+        new Vector3(-3.46f, 1f, 0f),
+        new Vector3(-3.33f, 1.52f, 0f),
+        new Vector3(-2.81f, 1.715f, 0f),
+        new Vector3(-2.78f, 1.715f, 0f),
+        new Vector3(-2.32f, 1.715f, 0f),
+        new Vector3(-2.32f, 1.715f, 0f),
+        new Vector3(-1.8f, 1.52f, 0f),
+        new Vector3(-1.42f, 1.93f, 0f),
+        new Vector3(-1.62f, 2.5f, 0f),
+        new Vector3(-1.62f, 2.98f, 0f),
+        new Vector3(-1.44f, 3.5f, 0f),
+        new Vector3(-0.935f, 3.7f, 0f),
+        new Vector3(-0.47f, 3.7f, 0f),
 
 
-        /*
+        new Vector3(0f, 3.65f, 0f),
+        new Vector3(0.47f, 3.7f, 0f),
+        new Vector3(0.935f, 3.7f, 0f),
+        new Vector3(1.44f, 3.5f, 0f),
+        new Vector3(1.62f, 2.98f, 0f),
+        new Vector3(1.62f, 2.5f, 0f),
+        new Vector3(1.42f, 1.93f, 0f),
+        new Vector3(1.8f, 1.52f, 0f),
+        new Vector3(2.32f, 1.715f, 0f),
+        new Vector3(2.32f, 1.715f, 0f),
+        new Vector3(2.78f, 1.715f, 0f),
+        new Vector3(2.81f, 1.715f, 0f),
+        new Vector3(3.33f, 1.52f, 0f),
+        new Vector3(3.46f, 1f, 0f),
+        new Vector3(3.46f, 0.48f, 0f),
+
+        new Vector3(3.46f, 0f, 0f),
+        new Vector3(3.46f, -0.48f, 0f),
+        new Vector3(3.46f, -1f, 0f),
+        new Vector3(3.33f, -1.52f, 0f),
+        new Vector3(2.81f, -1.715f, 0f),
+        new Vector3(2.78f, -1.715f, 0f),
+        new Vector3(2.32f, -1.715f, 0f),
+        new Vector3(2.32f, -1.715f, 0f),
+        new Vector3(1.8f, -1.52f, 0f),
+        new Vector3(1.42f, -1.93f, 0f),
+        new Vector3(1.62f, -2.5f, 0f),
+        new Vector3(1.62f, -2.98f, 0f),
+        new Vector3(1.44f, -3.5f, 0f),
+        new Vector3(0.935f, -3.7f, 0f),
+        new Vector3(0.47f, -3.7f, 0f)
+
+
+        // old coordinates
         new Vector3(220, 352, 0), // 2nd step for Yellow
         new Vector3(247, 361, 0),
         new Vector3(273, 360, 0),
@@ -242,9 +372,9 @@ public class Coordinate : MonoBehaviour
         new Vector3(213, 268, 0), // step before yellow's hanger
         new Vector3(212, 295, 0),
         new Vector3(213, 321, 0)
-*/
-    };
 
+    };
+*/
         paths["RedBase"] = new List<Vector3>
         {
         new Vector3(2.59f, -3.63f, 0f),
@@ -322,4 +452,5 @@ public class Coordinate : MonoBehaviour
     {
         return paths.ContainsKey(color) ? paths[color] : new List<Vector3>();
     }
+
 }

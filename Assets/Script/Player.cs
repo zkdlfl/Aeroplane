@@ -11,9 +11,11 @@ public abstract class Player : MonoBehaviour
 
     public string mainPathKey; // Assign specific key values in subclasses
     public string basePathKey;
+    public bool onceUpdate = true;
 
     protected virtual void Start()
     {
+
         coordinateManager = GameObject.FindObjectOfType<Coordinate>();
         if (coordinateManager == null)
         {
@@ -21,14 +23,20 @@ public abstract class Player : MonoBehaviour
             return;
         }
 
-        mainPath = coordinateManager.GetPath(mainPathKey);
-        basePath = coordinateManager.GetPath(basePathKey);
-
-        if (mainPath == null || mainPath.Count == 0)
+    }
+    public void Update()
+    {
+        if (coordinateManager.canUpdate && onceUpdate)
         {
-            Debug.LogError($"{mainPathKey} is not initialized properly in Coordinates.cs");
-            return;
+            InitializePieces();
+            onceUpdate = false;
         }
+    }
+    protected virtual void InitializePieces()
+    {
+        basePath = coordinateManager.GetPath(basePathKey);
+        mainPath = coordinateManager.mainPathsOriginal;
+
 
         if (basePath == null || basePath.Count == 0)
         {
@@ -42,21 +50,33 @@ public abstract class Player : MonoBehaviour
             return;
         }
 
-        InitializePieces();
-    }
+        if (mainPath.Count == 0)
+        {
+            Debug.LogError("big path is null!");
 
-    protected virtual void InitializePieces()
-    {
+        }
+
+        if (mainPath == null || mainPath.Count == 0)
+        {
+            Debug.LogError($"{mainPathKey} is not initialized properly in Coordinates.cs");
+            return;
+        }
+
+
         for (int i = 0; i < 4; i++)
         {
-            GameObject pieceObject = Instantiate(piecePrefab, mainPath[0], Quaternion.identity);
+            GameObject pieceObject = Instantiate(piecePrefab, mainPath[3 + 14 * i], Quaternion.identity);
             ChessPiece chessPiece = pieceObject.GetComponent<ChessPiece>();
 
             if (chessPiece != null)
             {
-                chessPiece.Initialize(mainPath, basePath, i);
-                pieceObject.name = $"{GetType().Name} Piece {i + 1}";
-                pieces.Add(chessPiece);
+                if (mainPathKey == "Red")
+                {
+                    chessPiece.Initialize(0, mainPath, basePath, i);
+
+                    pieceObject.name = $"{GetType().Name} Piece {i + 1}";
+                    pieces.Add(chessPiece);
+                }
             }
         }
     }
