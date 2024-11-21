@@ -162,6 +162,34 @@ public class Coordinate : MonoBehaviour
         paths = new Dictionary<string, List<Vector3>>();
         paths["Red"] = new List<Vector3>
     {
+        new Vector3(2.78f, -1.715f, 0f),
+        new Vector3(2.32f, -1.715f, 0f),
+        new Vector3(2.32f, -1.715f, 0f),
+        new Vector3(1.8f, -1.52f, 0f),
+        new Vector3(1.42f, -1.93f, 0f),
+        new Vector3(1.62f, -2.5f, 0f),
+        new Vector3(1.62f, -2.98f, 0f),
+        new Vector3(1.44f, -3.5f, 0f),
+        new Vector3(0.935f, -3.7f, 0f),
+        new Vector3(0.47f, -3.7f, 0f),
+
+        new Vector3(0f, -3.65f, 0f),
+
+        new Vector3(-0.47f, -3.7f, 0f),
+        new Vector3(-0.935f, -3.7f, 0f),
+        new Vector3(-1.44f, -3.5f, 0f),
+        new Vector3(-1.62f, -2.98f, 0f),
+        new Vector3(-1.62f, -2.5f, 0f),
+        new Vector3(-1.42f, -1.93f, 0f),
+        new Vector3(-1.8f, -1.52f, 0f),
+        new Vector3(-2.32f, -1.715f, 0f),
+        new Vector3(-2.32f, -1.715f, 0f),
+        new Vector3(-2.78f, -1.715f, 0f)
+
+
+
+
+        /*
         new Vector3(220, 352, 0), // 2nd step for Yellow
         new Vector3(247, 361, 0),
         new Vector3(273, 360, 0),
@@ -182,7 +210,7 @@ public class Coordinate : MonoBehaviour
         new Vector3(492, 352, 0),
         new Vector3(521, 361, 0),
         new Vector3(546, 362, 0),
-        new Vector3(572, 350, 0), 
+        new Vector3(572, 350, 0),
         new Vector3(581, 322, 0),
         new Vector3(581, 295, 0),
         new Vector3(581, 268, 0), // step before red's hanger
@@ -197,10 +225,10 @@ public class Coordinate : MonoBehaviour
         new Vector3(483, 109, 0),
         new Vector3(474, 83, 0),
         new Vector3(447, 71, 0),
-        new Vector3(422, 71, 0), 
+        new Vector3(422, 71, 0),
         new Vector3(396, 74, 0), // step before blue's hanger
         new Vector3(371, 72, 0),
-        new Vector3(346, 71, 0), 
+        new Vector3(346, 71, 0),
         new Vector3(319, 82, 0), // 2nd step for blue
         new Vector3(310, 110, 0),
         new Vector3(310, 135, 0),
@@ -209,40 +237,40 @@ public class Coordinate : MonoBehaviour
         new Vector3(272, 177, 0),
         new Vector3(247, 177, 0),
         new Vector3(220, 189, 0),
-        new Vector3(213, 216, 0), 
-        new Vector3(213, 243, 0), 
+        new Vector3(213, 216, 0),
+        new Vector3(213, 243, 0),
         new Vector3(213, 268, 0), // step before yellow's hanger
         new Vector3(212, 295, 0),
         new Vector3(213, 321, 0)
-
+*/
     };
 
         paths["RedBase"] = new List<Vector3>
         {
-        new Vector3(211, 123, 0),
-        new Vector3(259, 121, 0),
-        new Vector3(211, 74, 0), 
-        new Vector3(260, 74, 0)  // Add your path coordinates
+        new Vector3(2.59f, -3.63f, 0f),
+        new Vector3(2.59f, -2.73f, 0f),
+        new Vector3(3.5f, -2.73f, 0f),
+        new Vector3(3.5f, -3.63f, 0f)  // Add your path coordinates
     };
         paths["YellowBase"] = new List<Vector3>
         {
         new Vector3(211, 461, 0),
         new Vector3(260, 459, 0),
-        new Vector3(210, 412, 0), 
+        new Vector3(210, 412, 0),
         new Vector3(260, 413, 0)  // Add your path coordinates
     };
         paths["BlueBase"] = new List<Vector3>
         {
         new Vector3(535, 461, 0),
         new Vector3(583, 461, 0),
-        new Vector3(536, 412, 0), 
+        new Vector3(536, 412, 0),
         new Vector3(584, 411, 0)  // Add your path coordinates
     };
         paths["GreenBase"] = new List<Vector3>
         {
         new Vector3(535, 122, 0),
         new Vector3(584, 120, 0),
-        new Vector3(536, 74, 0), 
+        new Vector3(536, 74, 0),
         new Vector3(585, 72, 0)  // Add your path coordinates
     };
 
@@ -261,7 +289,7 @@ public class Coordinate : MonoBehaviour
         {
         new Vector3(492, 475, 0),
         new Vector3(397, 416, 0), // RUNWAY TO LEAVE
-        new Vector3(396, 393, 0), 
+        new Vector3(396, 393, 0),
         new Vector3(397, 368, 0),
         new Vector3(397, 345, 0),
         new Vector3(397, 323, 0),

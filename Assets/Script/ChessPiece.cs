@@ -32,12 +32,12 @@ public class ChessPiece : MonoBehaviour
 
     }
 
-    public void Initialize(List<Vector3> planePath, List<Vector3> baseCoordinates)
+    public void Initialize(List<Vector3> planePath, List<Vector3> baseCoordinates, int pieceNumber)
     {
         path = planePath;
         playerBase = baseCoordinates;
         currentPositionIndex = 0;
-        playerTransform.position = playerBase[0];
+        playerTransform.position = playerBase[pieceNumber];
     }
     void OnMouseDown()
     {

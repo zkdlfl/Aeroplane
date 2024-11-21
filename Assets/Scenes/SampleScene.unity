@@ -1126,7 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5a9ea5e12b8434fb65bdc662472f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piecePrefab: {fileID: 0}
+  piecePrefab: {fileID: 1193802835}
   mainPathKey: 
   basePathKey: 
 --- !u!1 &1353172073

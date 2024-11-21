@@ -54,7 +54,7 @@ public abstract class Player : MonoBehaviour
 
             if (chessPiece != null)
             {
-                chessPiece.Initialize(mainPath, basePath);
+                chessPiece.Initialize(mainPath, basePath, i);
                 pieceObject.name = $"{GetType().Name} Piece {i + 1}";
                 pieces.Add(chessPiece);
             }
