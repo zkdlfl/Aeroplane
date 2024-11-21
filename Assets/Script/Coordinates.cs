@@ -173,51 +173,51 @@ public class Coordinate : MonoBehaviour
         new Vector3(1.471f, -3.7f, 0f),
 
 
-new Vector3(0f, -3.65f, 0f),
+        new Vector3(0f, -3.65f, 0f),
 
-new Vector3(-1.471f, -3.7f, 0f),
-new Vector3(-0.935f, -3.7f, 0f),
-new Vector3(-1.43f, -3.5f, 0f),
-new Vector3(-1.62f, -2.98f, 0f),
-new Vector3(-1.62f, -2.5f, 0f),
-new Vector3(-1.42f, -1.935f, 0f),
-new Vector3(-1.8f, -1.52f, 0f),
-new Vector3(-2.32f, -1.725f, 0f),
-new Vector3(-2.785f, -1.725f, 0f),
-new Vector3(-3.285f, -1.52f, 0f),
-new Vector3(-3.425f, -0.98f, 0f),
-new Vector3(-3.425f, -0.48f, 0f),
+        new Vector3(-1.471f, -3.7f, 0f),
+        new Vector3(-0.935f, -3.7f, 0f),
+        new Vector3(-1.43f, -3.5f, 0f),
+        new Vector3(-1.62f, -2.98f, 0f),
+        new Vector3(-1.62f, -2.5f, 0f),
+        new Vector3(-1.42f, -1.935f, 0f),
+        new Vector3(-1.8f, -1.52f, 0f),
+        new Vector3(-2.32f, -1.725f, 0f),
+        new Vector3(-2.785f, -1.725f, 0f),
+        new Vector3(-3.285f, -1.52f, 0f),
+        new Vector3(-3.425f, -0.98f, 0f),
+        new Vector3(-3.425f, -0.48f, 0f),
 
 
-new Vector3(-3.425f, 0f, 0f),
+        new Vector3(-3.425f, 0f, 0f),
 
-new Vector3(-3.425f, 0.48f, 0f),
-new Vector3(-3.425f, 0.98f, 0f),
-new Vector3(-3.285f, 1.52f, 0f),
-new Vector3(-2.785f, 1.725f, 0f),
-new Vector3(-2.32f, 1.725f, 0f),
-new Vector3(-1.8f, 1.52f, 0f),
-new Vector3(-1.42f, 1.935f, 0f),
-new Vector3(-1.62f, 2.5f, 0f),
-new Vector3(-1.62f, 2.98f, 0f),
-new Vector3(-1.43f, 3.5f, 0f),
-new Vector3(-0.935f, 3.7f, 0f),
-new Vector3(-1.471f, 3.7f, 0f),
+        new Vector3(-3.425f, 0.48f, 0f),
+        new Vector3(-3.425f, 0.98f, 0f),
+        new Vector3(-3.285f, 1.52f, 0f),
+        new Vector3(-2.785f, 1.725f, 0f),
+        new Vector3(-2.32f, 1.725f, 0f),
+        new Vector3(-1.8f, 1.52f, 0f),
+        new Vector3(-1.42f, 1.935f, 0f),
+        new Vector3(-1.62f, 2.5f, 0f),
+        new Vector3(-1.62f, 2.98f, 0f),
+        new Vector3(-1.43f, 3.5f, 0f),
+        new Vector3(-0.935f, 3.7f, 0f),
+        new Vector3(-1.471f, 3.7f, 0f),
 
-new Vector3(0f, 3.65f, 0f),
+        new Vector3(0f, 3.65f, 0f),
 
-new Vector3(1.471f, 3.7f, 0f),
-new Vector3(0.935f, 3.7f, 0f),
-new Vector3(1.43f, 3.5f, 0f),
-new Vector3(1.62f, 2.98f, 0f),
-new Vector3(1.62f, 2.5f, 0f),
-new Vector3(1.42f, 1.935f, 0f),
-new Vector3(1.8f, 1.52f, 0f),
-new Vector3(2.32f, 1.725f, 0f),
-new Vector3(2.785f, 1.725f, 0f),
-new Vector3(3.285f, 1.52f, 0f),
-new Vector3(3.425f, 0.98f, 0f),
-new Vector3(3.425f, 0.48f, 0f)
+        new Vector3(1.471f, 3.7f, 0f),
+        new Vector3(0.935f, 3.7f, 0f),
+        new Vector3(1.43f, 3.5f, 0f),
+        new Vector3(1.62f, 2.98f, 0f),
+        new Vector3(1.62f, 2.5f, 0f),
+        new Vector3(1.42f, 1.935f, 0f),
+        new Vector3(1.8f, 1.52f, 0f),
+        new Vector3(2.32f, 1.725f, 0f),
+        new Vector3(2.785f, 1.725f, 0f),
+        new Vector3(3.285f, 1.52f, 0f),
+        new Vector3(3.425f, 0.98f, 0f),
+        new Vector3(3.425f, 0.48f, 0f)
 
 
 
@@ -449,7 +449,8 @@ new Vector3(3.425f, 0.48f, 0f)
         new Vector3(2.59f, -3.63f, 0f),
         new Vector3(2.59f, -2.73f, 0f),
         new Vector3(3.5f, -2.73f, 0f),
-        new Vector3(3.5f, -3.63f, 0f)  // Add your path coordinates
+        new Vector3(3.5f, -3.63f, 0f),  // Add your path coordinates
+        new Vector3(3.7f, -1.9f, 0f)
     };
         paths["YellowBase"] = new List<Vector3>
         {

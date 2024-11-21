@@ -65,14 +65,14 @@ public abstract class Player : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            GameObject pieceObject = Instantiate(piecePrefab, mainPath[3 + 14 * i], Quaternion.identity);
+            GameObject pieceObject = Instantiate(piecePrefab, mainPath[0], Quaternion.identity);
             ChessPiece chessPiece = pieceObject.GetComponent<ChessPiece>();
 
             if (chessPiece != null)
             {
                 if (mainPathKey == "Red")
                 {
-                    chessPiece.Initialize(3, mainPath, basePath, i);
+                    chessPiece.Initialize(2, mainPath, basePath, i);
 
                     pieceObject.name = $"{GetType().Name} Piece {i + 1}";
                     pieces.Add(chessPiece);

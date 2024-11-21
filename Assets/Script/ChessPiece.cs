@@ -62,13 +62,27 @@ public class ChessPiece : MonoBehaviour
                 {
                     Debug.Log("MOVING OUT OF BASE, GAMEDIE FALSE");
 
-                    Move(0);
-                    Move(GameDie.randomDiceSide + 1);
+                    GettingOutOfBase();
                     isOutOfBase = true;
                     GameDie.Rolled = false;
                 }
             }
 
+        }
+    }
+
+    public void GettingOutOfBase()
+    {
+        StartCoroutine(MoveOutOfBase());
+    }
+
+    private IEnumerator MoveOutOfBase()
+    {
+        Vector3 nextPosition = playerBase[4];
+        while (Vector3.Distance(playerTransform.position, nextPosition) > 0.01f)
+        {
+            playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition, movementSpeed * Time.deltaTime);
+            yield return null;
         }
     }
 
