@@ -48,8 +48,13 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   movementSpeed: 0
   path: []
-  currentPositionIndex: 0
   isMoving: 0
+  isOutOfBase: 0
+  GameDie: {fileID: 0}
+  playerBase: []
+  currentPositionIndex: 0
+  firstIndex: 0
+  shift: 0
 --- !u!212 &1050214710293318047
 SpriteRenderer:
   m_ObjectHideFlags: 0

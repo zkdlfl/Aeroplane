@@ -72,7 +72,7 @@ public abstract class Player : MonoBehaviour
             {
                 if (mainPathKey == "Red")
                 {
-                    chessPiece.Initialize(0, mainPath, basePath, i);
+                    chessPiece.Initialize(3, mainPath, basePath, i);
 
                     pieceObject.name = $"{GetType().Name} Piece {i + 1}";
                     pieces.Add(chessPiece);

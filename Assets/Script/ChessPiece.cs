@@ -16,6 +16,7 @@ public class ChessPiece : MonoBehaviour
     public List<Vector3> playerBase;
     public int currentPositionIndex;
     public int firstIndex;
+    public int shift;
 
 
 
@@ -36,13 +37,11 @@ public class ChessPiece : MonoBehaviour
     public void Initialize(int startIndex, List<Vector3> planePath, List<Vector3> baseCoordinates, int pieceNumber)
     {
         path = planePath;
+        Debug.Log("initialize path size" + path.Count);
+        shift = startIndex;
         playerBase = baseCoordinates;
-        firstIndex = startIndex;
-        currentPositionIndex = startIndex;
-        Debug.Log("start index" + startIndex);
-        Debug.Log("size " + path.Count);
-
-        Debug.Log("start index coords " + path[startIndex]);
+        currentPositionIndex = 0;
+        Debug.Log("start index " + currentPositionIndex);
         playerTransform.position = playerBase[pieceNumber];
     }
     void OnMouseDown()
@@ -87,14 +86,10 @@ public class ChessPiece : MonoBehaviour
         isMoving = true;
         for (int i = 0; i < steps; i++)
         {
-            Debug.Log("move size check " + path.Count);
+            Debug.Log("move size check " + currentPositionIndex);
 
-            Vector3 nextPosition;
-            if (currentPositionIndex + 1 >= path.Count)
+            Vector3 nextPosition = path[(currentPositionIndex + 1 + shift) % 60];
 
-                nextPosition = path[(currentPositionIndex + 1) - path.Count];
-            else
-                nextPosition = path[(currentPositionIndex + 1)];
 
             while (Vector3.Distance(playerTransform.position, nextPosition) > 0.01f)
             {
@@ -102,9 +97,10 @@ public class ChessPiece : MonoBehaviour
                 yield return null;
             }
             currentPositionIndex++;
+            currentPositionIndex = currentPositionIndex % 60;
         }
         isMoving = false;
-        Debug.Log($"{gameObject.name} reached position {currentPositionIndex - firstIndex}");
+        Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
 
     }
     /*
