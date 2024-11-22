@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class Dice : MonoBehaviour
 {
     private Sprite[] diceSides;
     private SpriteRenderer rend;
+    public TextMeshProUGUI diceCaption;
 
     public bool Rolled;
     public int randomDiceSide;
@@ -57,5 +59,22 @@ public class Dice : MonoBehaviour
         Debug.Log("Dice Roll Result: " + (randomDiceSide + 1));
         Rolled = true;
 
+        //add caption
+        string currentPlayer = DetermineCurrentPlayer(); 
+        diceCaption.text = $"{currentPlayer} moves {randomDiceSide + 1} steps";
+        Debug.Log("Updated Caption: " + diceCaption.text);
+
+    }
+      private string DetermineCurrentPlayer()
+    {
+          int currentTurn = (randomDiceSide + 1) % 4;
+        return currentTurn switch
+        {
+            0 => "Red",
+            1 => "Blue",
+            2 => "Green",
+            3 => "Yellow",
+            _ => "Unknown"
+        };
     }
 }
