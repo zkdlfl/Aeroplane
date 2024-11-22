@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,9 @@ public class ChessPiece : MonoBehaviour
     public int currentPositionIndex;
     public int firstIndex;
     public int shift;
-
-
+    public string [] color_array = {"green", "red", "blue", "yellow"};
+    public string current_color = "red";
+    public bool have_moved_to_original_color = false; // checks whether the plane has skipped to it's color already
 
     protected virtual void Start()
     {
@@ -91,7 +93,7 @@ public class ChessPiece : MonoBehaviour
         if (isMoving)
             return;
 
-
+        have_moved_to_original_color = false;
         StartCoroutine(MoveSteps(steps));
     }
 
@@ -116,6 +118,16 @@ public class ChessPiece : MonoBehaviour
         isMoving = false;
         Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
 
+        // check to see if the plane is on the it's color
+        int find_current_color = currentPositionIndex % 4;
+        string standing_color = color_array[find_current_color-1];
+
+        Debug.Log(standing_color);
+        if(standing_color == current_color && have_moved_to_original_color == false){
+            Debug.Log("IMHERE");
+            StartCoroutine(MoveSteps(4));
+            have_moved_to_original_color = true;
+        }
     }
     /*
         protected void OnMouseDown()
