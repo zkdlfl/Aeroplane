@@ -106,7 +106,7 @@ public class ChessPiece : MonoBehaviour
         {
             Debug.Log("move size check " + currentPositionIndex);
 
-            Vector3 nextPosition = path[(currentPositionIndex + 1 + shift) % 60];
+            Vector3 nextPosition = path[(currentPositionIndex + 1 + shift) % 52];
 
 
             while (Vector3.Distance(playerTransform.position, nextPosition) > 0.01f)
@@ -115,7 +115,7 @@ public class ChessPiece : MonoBehaviour
                 yield return null;
             }
             currentPositionIndex++;
-            currentPositionIndex = currentPositionIndex % 60;
+            currentPositionIndex = currentPositionIndex % 52;
         }
         isMoving = false;
         Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
@@ -144,7 +144,7 @@ public class ChessPiece : MonoBehaviour
                 // playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition_megajump, movementSpeed * Time.deltaTime);
 
                 currentPositionIndex += 14;
-                currentPositionIndex = currentPositionIndex % 60;
+                currentPositionIndex = currentPositionIndex % 52;
 
                 isMoving = false;
             }

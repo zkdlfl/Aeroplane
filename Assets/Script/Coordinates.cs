@@ -170,6 +170,7 @@ public class Coordinate : MonoBehaviour
         new Vector3(1.42f, -1.935f, 0f),
         new Vector3(1.62f, -2.5f, 0f),
         new Vector3(1.62f, -2.98f, 0f),
+        new Vector3(1.43f, -3.5f, 0f),
         new Vector3(0.935f, -3.7f, 0f),
         new Vector3(0.47f, -3.7f, 0f),
 
@@ -454,7 +455,7 @@ public class Coordinate : MonoBehaviour
     };
         paths["YellowBase"] = new List<Vector3>
         {
-        new Vector3(-2.59f,3.63f, 0f),
+        new Vector3(-2.59f, 3.63f, 0f),
         new Vector3(-2.59f, 2.73f, 0f),
         new Vector3(-3.5f, 2.73f, 0f),
         new Vector3(-3.5f, 3.63f, 0f),  // Add your path coordinates
@@ -467,11 +468,11 @@ public class Coordinate : MonoBehaviour
     };
         paths["BlueBase"] = new List<Vector3>
         {
-                    new Vector3(-2.59f, -3.63f, 0f),
+        new Vector3(-2.59f, -3.63f, 0f),
         new Vector3(-2.59f, -2.73f, 0f),
         new Vector3(-3.5f, -2.73f, 0f),
         new Vector3(-3.5f, -3.63f, 0f),  // Add your path coordinates
-        new Vector3(-3.7f, -1.9f, 0f)
+        new Vector3(-1.8f,-3.9f,  0f)
 
 
         // new Vector3(535, 461, 0),
@@ -481,11 +482,11 @@ public class Coordinate : MonoBehaviour
     };
         paths["GreenBase"] = new List<Vector3>
         {
-                    new Vector3(2.59f, 3.63f, 0f),
+        new Vector3(2.59f, 3.63f, 0f),
         new Vector3(2.59f, 2.73f, 0f),
         new Vector3(3.5f, 2.73f, 0f),
         new Vector3(3.5f, 3.63f, 0f),  // Add your path coordinates
-        new Vector3(3.7f, 1.9f, 0f)
+        new Vector3(1.8f, 3.9f, 0f)
     
         // new Vector3(535, 122, 0),
         // new Vector3(584, 120, 0),

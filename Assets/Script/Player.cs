@@ -65,9 +65,10 @@ public abstract class Player : MonoBehaviour
         int startingIndex = mainPathKey switch
         {
             "Red" => 2,
-            "Blue" => 12,
-            "Green" => 22,
-            "Yellow" => 32,
+            "Blue" => 15,
+            "Yellow" => 28,
+                        "Green" => 41,
+
             _ => 0
         };
 
