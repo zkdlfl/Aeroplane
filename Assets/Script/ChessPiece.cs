@@ -97,6 +97,7 @@ public class ChessPiece : MonoBehaviour
 
         have_moved_to_original_color = false;
         StartCoroutine(MoveSteps(steps));
+
     }
     private IEnumerator MoveSteps(int steps)
     {
@@ -119,11 +120,11 @@ public class ChessPiece : MonoBehaviour
         isMoving = false;
         Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
 
+
         // check to see if the plane is on the it's color
+
         int find_current_color = currentPositionIndex % 4;
         string standing_color = color_array[find_current_color-1];
-
-        // Debug.Log(standing_color);
 
         if(standing_color == current_color && have_moved_to_original_color == false)
         {
@@ -134,10 +135,15 @@ public class ChessPiece : MonoBehaviour
                 
                 isMoving = true;
 
-                Vector3 nextPosition_megajump = path[currentPositionIndex + 12];
-                playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition_megajump, movementSpeed * Time.deltaTime);
+                Vector3 nextPosition_megajump = path[currentPositionIndex + 14];
+                while (Vector3.Distance(playerTransform.position, nextPosition_megajump) > 0.01f)
+                {
+                    playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition_megajump, movementSpeed * Time.deltaTime);
+                    yield return null;
+                }
+                // playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition_megajump, movementSpeed * Time.deltaTime);
 
-                currentPositionIndex += 12;
+                currentPositionIndex += 14;
                 currentPositionIndex = currentPositionIndex % 60;
 
                 isMoving = false;
@@ -149,5 +155,4 @@ public class ChessPiece : MonoBehaviour
             }
         }
     }
-  
 }
