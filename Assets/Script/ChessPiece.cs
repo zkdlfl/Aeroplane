@@ -97,8 +97,8 @@ public class ChessPiece : MonoBehaviour
 
         have_moved_to_original_color = false;
         StartCoroutine(MoveSteps(steps));
-    }
 
+    }
     private IEnumerator MoveSteps(int steps)
     {
         isMoving = true;
@@ -120,26 +120,39 @@ public class ChessPiece : MonoBehaviour
         isMoving = false;
         Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
 
+
         // check to see if the plane is on the it's color
+
         int find_current_color = currentPositionIndex % 4;
         string standing_color = color_array[find_current_color-1];
-        
 
-        Debug.Log(standing_color);
         if(standing_color == current_color && have_moved_to_original_color == false)
         {
+            have_moved_to_original_color = true;
             if(currentPositionIndex == mega_jump_array[find_current_color-1])
             {
-                have_moved_to_original_color = true;
-                StartCoroutine(MoveSteps(12));
+                Debug.Log("IMHERE");
+                
+                isMoving = true;
+
+                Vector3 nextPosition_megajump = path[currentPositionIndex + 14];
+                while (Vector3.Distance(playerTransform.position, nextPosition_megajump) > 0.01f)
+                {
+                    playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition_megajump, movementSpeed * Time.deltaTime);
+                    yield return null;
+                }
+                // playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition_megajump, movementSpeed * Time.deltaTime);
+
+                currentPositionIndex += 14;
+                currentPositionIndex = currentPositionIndex % 60;
+
+                isMoving = false;
             }
             else
             {
-                Debug.Log("IMHERE");
-                have_moved_to_original_color = true;
+                // Debug.Log("IMHERE");
                 StartCoroutine(MoveSteps(4));
             }
         }
     }
-  
 }
