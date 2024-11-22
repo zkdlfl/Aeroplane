@@ -10,12 +10,19 @@ public class Dice : MonoBehaviour
 
     public bool Rolled;
     public int randomDiceSide;
+    private GameManager gameManager;
+    private string currentPlayer;  // Store the current player's name
 
     private void Start()
     {
         rend = GetComponent<SpriteRenderer>();
         diceSides = new Sprite[6];
         Rolled = false;
+
+        // Set the default caption
+        diceCaption.text = "Waiting for rolling...";
+
+        // Load dice sides
         for (int i = 0; i < 6; i++)
         {
             diceSides[i] = Resources.Load<Sprite>($"Sprites/dicesides/{i + 1}");
@@ -33,48 +40,55 @@ public class Dice : MonoBehaviour
         {
             Debug.LogError("diceSides[0] is null, no initial sprite set!");
         }
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnMouseDown()
     {
+        // Get the current player 
+        currentPlayer = gameManager.GetCurrentPlayerName();
+        diceCaption.text = $"{currentPlayer}'s turn";
+
+        // Start the dice roll 
         StartCoroutine(RollDice());
     }
 
     private IEnumerator RollDice()
     {
-         randomDiceSide = 0;
+        randomDiceSide = 0;
 
+        // Simulate the dice rolling animation
         for (int i = 0; i < 10; i++)
         {
             randomDiceSide = Random.Range(0, diceSides.Length);
-
             rend.sprite = diceSides[randomDiceSide] != null ? diceSides[randomDiceSide] : diceSides[0];
-
             yield return new WaitForSeconds(0.05f);
         }
 
+        // Final dice result
         randomDiceSide = Random.Range(0, diceSides.Length);
         rend.sprite = diceSides[randomDiceSide] != null ? diceSides[randomDiceSide] : diceSides[0];
 
         Debug.Log("Dice Roll Result: " + (randomDiceSide + 1));
         Rolled = true;
 
-        //add caption
-        string currentPlayer = DetermineCurrentPlayer(); 
-        diceCaption.text = $"{currentPlayer} moves {randomDiceSide + 1} steps";
-        Debug.Log("Updated Caption: " + diceCaption.text);
-
-    }
-      private string DetermineCurrentPlayer()
-    {
-          int currentTurn = (randomDiceSide + 1) % 4;
-        return currentTurn switch
+        if (randomDiceSide == 5)  // If 6 is rolled (index 5 in array)
         {
-            0 => "Red",
-            1 => "Blue",
-            2 => "Green",
-            3 => "Yellow",
-            _ => "Unknown"
-        };
+            diceCaption.text = $"{currentPlayer} rolled a 6! Roll again!";
+            Debug.Log($"{currentPlayer} rolled a 6! Allowing a second roll.");
+
+            // Wait for a moment before rolling again
+            yield return new WaitForSeconds(1.5f);
+
+            // Roll again
+            StartCoroutine(RollDice());
+        }
+        else
+        {
+            // End turn and pass it to the next player
+            diceCaption.text = $"{currentPlayer}'s turn is over.";
+            gameManager.NextTurn();
+        }
     }
 }

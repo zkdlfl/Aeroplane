@@ -5,11 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public List<Player> allPlayers;  
     private List<Player> activePlayers = new List<Player>();  
+    private int currentPlayerIndex = 0;  
 
     private void Start()
     {
         // Get the number of players from PlayerPrefs
-        int playerCount = PlayerPrefs.GetInt("NumPlayers", 2); // Default to 2 if no player count is set
+        int playerCount = PlayerPrefs.GetInt("NumPlayers", 2); 
         SelectPlayers(playerCount);
     }
 
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         activePlayers.Clear();
 
-        // Activate 
+        // Activate players
         for (int i = 0; i < playerCount; i++)
         {
             activePlayers.Add(allPlayers[i]);
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"{allPlayers[i].name} is active.");
         }
 
-        // Deactivate
+        // Deactivate players
         for (int i = playerCount; i < allPlayers.Count; i++)
         {
             allPlayers[i].gameObject.SetActive(false);
@@ -36,5 +37,21 @@ public class GameManager : MonoBehaviour
     public List<Player> GetActivePlayers()
     {
         return activePlayers;
+    }
+
+    // Get the current player's name
+    public string GetCurrentPlayerName()
+    {
+        if (activePlayers.Count > 0)
+        {
+            return activePlayers[currentPlayerIndex].name;  // Return the name of the current player
+        }
+        return "Unknown";  //  "Unknown" if no players
+    }
+
+    // next player's turn
+    public void NextTurn()
+    {
+        currentPlayerIndex = (currentPlayerIndex + 1) % activePlayers.Count;  
     }
 }
