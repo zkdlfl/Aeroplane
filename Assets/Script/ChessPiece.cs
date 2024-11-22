@@ -126,15 +126,19 @@ public class ChessPiece : MonoBehaviour
         
 
         Debug.Log(standing_color);
-        if(currentPositionIndex == mega_jump_array[find_current_color-1]){
-            have_moved_to_original_color = true;
-            StartCoroutine(MoveSteps(12));
-        }
         if(standing_color == current_color && have_moved_to_original_color == false)
         {
-            Debug.Log("IMHERE");
-            have_moved_to_original_color = true;
-            StartCoroutine(MoveSteps(4));
+            if(currentPositionIndex == mega_jump_array[find_current_color-1])
+            {
+                have_moved_to_original_color = true;
+                StartCoroutine(MoveSteps(12));
+            }
+            else
+            {
+                Debug.Log("IMHERE");
+                have_moved_to_original_color = true;
+                StartCoroutine(MoveSteps(4));
+            }
         }
     }
   
