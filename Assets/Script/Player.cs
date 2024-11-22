@@ -61,22 +61,26 @@ public abstract class Player : MonoBehaviour
             Debug.LogError($"{mainPathKey} is not initialized properly in Coordinates.cs");
             return;
         }
-
+        
+        int startingIndex = mainPathKey switch
+        {
+            "Red" => 2,
+            "Blue" => 12,
+            "Green" => 22,
+            "Yellow" => 32,
+            _ => 0
+        };
 
         for (int i = 0; i < 4; i++)
         {
-            GameObject pieceObject = Instantiate(piecePrefab, mainPath[0], Quaternion.identity);
+            GameObject pieceObject = Instantiate(piecePrefab, mainPath[startingIndex], Quaternion.identity);
             ChessPiece chessPiece = pieceObject.GetComponent<ChessPiece>();
 
             if (chessPiece != null)
             {
-                if (mainPathKey == "Red")
-                {
-                    chessPiece.Initialize(2, mainPath, basePath, i);
-
-                    pieceObject.name = $"{GetType().Name} Piece {i + 1}";
-                    pieces.Add(chessPiece);
-                }
+                chessPiece.Initialize(startingIndex, mainPath, basePath, i);
+                pieceObject.name = $"{mainPathKey} Piece {i + 1}";
+                pieces.Add(chessPiece);
             }
         }
     }

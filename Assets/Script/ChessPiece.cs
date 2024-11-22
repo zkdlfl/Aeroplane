@@ -117,10 +117,5 @@ public class ChessPiece : MonoBehaviour
         Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
 
     }
-    /*
-        protected void OnMouseDown()
-        {
-            Move(1);
-        }
-        */
+  
 }
