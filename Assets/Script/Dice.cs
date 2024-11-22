@@ -12,6 +12,7 @@ public class Dice : MonoBehaviour
     public int randomDiceSide;
     private GameManager gameManager;
     private string currentPlayer;  // Store the current player's name
+    private bool hasRolledSecondTime; //avoid second roll after getting a 6
 
     private void Start()
     {
@@ -57,8 +58,6 @@ public class Dice : MonoBehaviour
     private IEnumerator RollDice()
     {
         randomDiceSide = 0;
-
-        // Simulate the dice rolling animation
         for (int i = 0; i < 10; i++)
         {
             randomDiceSide = Random.Range(0, diceSides.Length);
@@ -73,12 +72,12 @@ public class Dice : MonoBehaviour
         Debug.Log("Dice Roll Result: " + (randomDiceSide + 1));
         Rolled = true;
 
-        if (randomDiceSide == 5)  // If 6 is rolled (index 5 in array)
+        if (randomDiceSide == 5&& !hasRolledSecondTime) 
         {
-            diceCaption.text = $"{currentPlayer} rolled a 6! Roll again!";
-            Debug.Log($"{currentPlayer} rolled a 6! Allowing a second roll.");
+            diceCaption.text = $" {currentPlayer}, Roll again!";
+            Debug.Log($"{currentPlayer} rolled a 6. Allowing a second roll.");
+            hasRolledSecondTime = true;
 
-            // Wait for a moment before rolling again
             yield return new WaitForSeconds(1.5f);
 
             // Roll again
@@ -86,8 +85,9 @@ public class Dice : MonoBehaviour
         }
         else
         {
-            // End turn and pass it to the next player
+            // End turn, next player
             diceCaption.text = $"{currentPlayer}'s turn is over.";
+            hasRolledSecondTime = false;
             gameManager.NextTurn();
         }
     }

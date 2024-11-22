@@ -20,7 +20,6 @@ public class ChessPiece : MonoBehaviour
     public int shift;
     public string [] color_array = {"green", "red", "blue", "yellow"};
     public int [] mega_jump_array = {5, 18, 31, 44}; 
-    // the currentPositionIndex that allows the respective colors from color_array to mega jump 11 spaces
     public string current_color = "red";
     public bool have_moved_to_original_color = false; // checks whether the plane has skipped to it's color already
 
