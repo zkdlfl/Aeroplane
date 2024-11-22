@@ -123,17 +123,20 @@ public class ChessPiece : MonoBehaviour
         // check to see if the plane is on the it's color
 
         int find_current_color = currentPositionIndex % 4;
-        string standing_color = color_array[find_current_color-1];
+        int color_index = (find_current_color - 1 + color_array.Length) % color_array.Length;
+        string standing_color = color_array[color_index];
+
 
         if(standing_color == current_color && have_moved_to_original_color == false)
         {
             have_moved_to_original_color = true;
-            if(currentPositionIndex == mega_jump_array[find_current_color-1])
+            if (currentPositionIndex == mega_jump_array[color_index])
             {
                 Debug.Log("IMHERE");
                 
                 isMoving = true;
 
+                int mega_jump_target_index = (currentPositionIndex + 14) % path.Count;
                 Vector3 nextPosition_megajump = path[currentPositionIndex + 14];
                 while (Vector3.Distance(playerTransform.position, nextPosition_megajump) > 0.01f)
                 {
@@ -142,15 +145,13 @@ public class ChessPiece : MonoBehaviour
                 }
                 // playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition_megajump, movementSpeed * Time.deltaTime);
 
-                currentPositionIndex += 14;
-                currentPositionIndex = currentPositionIndex % 52;
-
+                currentPositionIndex = mega_jump_target_index;
                 isMoving = false;
             }
             else
             {
                 // Debug.Log("IMHERE");
-                StartCoroutine(MoveSteps(4));
+                yield return StartCoroutine(MoveSteps(4));
             }
         }
     }

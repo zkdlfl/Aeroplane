@@ -13,6 +13,7 @@ public class Dice : MonoBehaviour
     private GameManager gameManager;
     private string currentPlayer;  // Store the current player's name
     private bool hasRolledSecondTime; //avoid second roll after getting a 6
+    private bool hasMoved; //make sure the second roll happens after the first move
 
     private void Start()
     {
@@ -72,9 +73,18 @@ public class Dice : MonoBehaviour
         Debug.Log("Dice Roll Result: " + (randomDiceSide + 1));
         Rolled = true;
 
-        if (randomDiceSide == 5&& !hasRolledSecondTime) 
+        if (randomDiceSide == 5&& !hasRolledSecondTime&& !hasMoved)
         {
             diceCaption.text = $" {currentPlayer}, Roll again!";
+            Debug.Log($"{currentPlayer} rolled a 6. Allowing a second roll.");
+        }
+             else if (randomDiceSide == 5 && !hasMoved)
+        {
+            yield return null;
+        }
+             else if (randomDiceSide == 5 && hasMoved)
+        {
+            diceCaption.text = $"{currentPlayer}, Roll again!";
             Debug.Log($"{currentPlayer} rolled a 6. Allowing a second roll.");
             hasRolledSecondTime = true;
 
@@ -92,3 +102,4 @@ public class Dice : MonoBehaviour
         }
     }
 }
+
