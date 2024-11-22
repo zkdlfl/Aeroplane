@@ -19,6 +19,8 @@ public class ChessPiece : MonoBehaviour
     public int firstIndex;
     public int shift;
     public string [] color_array = {"green", "red", "blue", "yellow"};
+    public int [] mega_jump_array = {5, 18, 31, 44}; 
+    // the currentPositionIndex that allows the respective colors from color_array to mega jump 11 spaces
     public string current_color = "red";
     public bool have_moved_to_original_color = false; // checks whether the plane has skipped to it's color already
 
@@ -121,12 +123,22 @@ public class ChessPiece : MonoBehaviour
         // check to see if the plane is on the it's color
         int find_current_color = currentPositionIndex % 4;
         string standing_color = color_array[find_current_color-1];
+        
 
         Debug.Log(standing_color);
-        if(standing_color == current_color && have_moved_to_original_color == false){
-            Debug.Log("IMHERE");
-            StartCoroutine(MoveSteps(4));
-            have_moved_to_original_color = true;
+        if(standing_color == current_color && have_moved_to_original_color == false)
+        {
+            if(currentPositionIndex == mega_jump_array[find_current_color-1])
+            {
+                have_moved_to_original_color = true;
+                StartCoroutine(MoveSteps(12));
+            }
+            else
+            {
+                Debug.Log("IMHERE");
+                have_moved_to_original_color = true;
+                StartCoroutine(MoveSteps(4));
+            }
         }
     }
   
