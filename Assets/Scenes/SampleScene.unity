@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 34846347}
   m_Layer: 0
   m_Name: GreenPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,10 +201,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPlayers:
-  - {fileID: 1228020258}
-  - {fileID: 1460172827}
-  - {fileID: 1261094671}
-  - {fileID: 34846347}
+  - {fileID: 1228020256}
+  - {fileID: 1460172824}
+  - {fileID: 1261094670}
+  - {fileID: 34846346}
 --- !u!4 &54129544
 Transform:
   m_ObjectHideFlags: 0
@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 1228020258}
   m_Layer: 0
   m_Name: RedPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1434,7 +1434,7 @@ GameObject:
   - component: {fileID: 1261094671}
   m_Layer: 0
   m_Name: YellowPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1701,7 +1701,7 @@ GameObject:
   - component: {fileID: 1460172827}
   m_Layer: 0
   m_Name: BluePlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

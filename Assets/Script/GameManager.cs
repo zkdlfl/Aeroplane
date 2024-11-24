@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Player> allPlayers;  
-    private List<Player> activePlayers = new List<Player>();  
+    public List<GameObject> allPlayers;  
+    private List<GameObject> activePlayers = new List<GameObject>();  
     private int currentPlayerIndex = 0;  
 
     private void Start()
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public List<Player> GetActivePlayers()
+    public List<GameObject> GetActivePlayers()
     {
         return activePlayers;
     }
