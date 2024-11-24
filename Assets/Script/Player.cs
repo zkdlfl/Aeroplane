@@ -8,7 +8,7 @@ public abstract class GamePlayer : MonoBehaviour
     protected Coordinate coordinateManager;
     protected List<Vector3> mainPath;
     protected List<Vector3> basePath;
-
+    protected List<Vector3> redPath;
     public string mainPathKey; // Assign specific key values in subclasses
     public string basePathKey;
     public bool onceUpdate = true;
@@ -36,7 +36,7 @@ public abstract class GamePlayer : MonoBehaviour
     {
         basePath = coordinateManager.GetPath(basePathKey);
         mainPath = coordinateManager.mainPathsOriginal;
-
+        redPath = coordinateManager.RedHanger;
 
         if (basePath == null || basePath.Count == 0)
         {
@@ -79,7 +79,7 @@ public abstract class GamePlayer : MonoBehaviour
 
             if (chessPiece != null)
             {
-                chessPiece.Initialize(startingIndex, mainPath, basePath, i);
+                chessPiece.Initialize(startingIndex, mainPath, basePath, redPath, i);
                 pieceObject.name = $"{mainPathKey} Piece {i + 1}";
                 pieces.Add(chessPiece);
             }

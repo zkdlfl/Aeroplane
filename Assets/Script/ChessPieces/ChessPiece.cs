@@ -8,6 +8,9 @@ public class ChessPiece : MonoBehaviour
     public Transform playerTransform;
     public float movementSpeed;
     public List<Vector3> path;
+    public List<Vector3> current_color_home_path;
+
+    public List<Vector3> [] HomeBase;
     protected SpriteRenderer spriteRenderer;
     protected CircleCollider2D circleCollider;
     public bool isMoving;
@@ -20,6 +23,8 @@ public class ChessPiece : MonoBehaviour
     public int shift;
     public string [] color_array = {"green", "red", "blue", "yellow"};
     public int [] mega_jump_array = {5, 18, 31, 44}; 
+
+    public int [] home_base_array = {37, 50, 11, 24}; 
     public string current_color = "red";
     public bool have_moved_to_original_color = false; // checks whether the plane has skipped to it's color already
 
@@ -37,9 +42,12 @@ public class ChessPiece : MonoBehaviour
 
     }
 
-    public void Initialize(int startIndex, List<Vector3> planePath, List<Vector3> baseCoordinates, int pieceNumber)
+    public void Initialize(int startIndex, List<Vector3> planePath, List<Vector3> baseCoordinates, List<Vector3> redHanger, int pieceNumber)
     {
         path = planePath;
+        HomeBase = new List<Vector3>[4];
+        HomeBase[1] = redHanger;
+
         Debug.Log("initialize path size" + path.Count);
         shift = startIndex;
         playerBase = baseCoordinates;
@@ -50,7 +58,6 @@ public class ChessPiece : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("pressed1");
-
         if (GameDie.Rolled)
         {
             Debug.Log("pressed");
@@ -70,7 +77,6 @@ public class ChessPiece : MonoBehaviour
                     GameDie.Rolled = false;
                 }
             }
-
         }
     }
 
@@ -101,6 +107,19 @@ public class ChessPiece : MonoBehaviour
     private IEnumerator MoveSteps(int steps)
     {
         isMoving = true;
+
+        int color_index = 1; // fix this part later
+        int before_hanger = home_base_array[color_index];
+        int more_steps = 0;
+
+        current_color_home_path = HomeBase[color_index];
+
+        if(currentPositionIndex + steps > before_hanger){
+            more_steps = steps;
+            steps = currentPositionIndex + steps - before_hanger;
+
+            more_steps = more_steps - steps;
+        }
         for (int i = 0; i < steps; i++)
         {
             Debug.Log("move size check " + currentPositionIndex);
@@ -123,14 +142,13 @@ public class ChessPiece : MonoBehaviour
         // check to see if the plane is on the it's color
 
         int find_current_color = currentPositionIndex % 4;
-        int color_index = (find_current_color - 1 + color_array.Length) % color_array.Length;
-        string standing_color = color_array[color_index];
+        int standing_color_index = (find_current_color - 1 + color_array.Length) % color_array.Length;
+        string standing_color = color_array[standing_color_index];
 
 
-        if(standing_color == current_color && have_moved_to_original_color == false)
+        if(standing_color == current_color)
         {
-            have_moved_to_original_color = true;
-            if (currentPositionIndex == mega_jump_array[color_index])
+            if (currentPositionIndex == mega_jump_array[standing_color_index])
             {
                 Debug.Log("IMHERE");
                 
@@ -150,9 +168,33 @@ public class ChessPiece : MonoBehaviour
             }
             else
             {
-                // Debug.Log("IMHERE");
-                yield return StartCoroutine(MoveSteps(4));
+                if(have_moved_to_original_color == false)
+                {
+                    have_moved_to_original_color = true;
+                    yield return StartCoroutine(MoveSteps(4));
+                }
             }
         }
+
+        if(more_steps > 0){
+            currentPositionIndex = -5;
+            for (int i = 0; i <  more_steps; i++)
+            {
+                Debug.Log("move size check " + currentPositionIndex);
+
+                Vector3 nextPosition = current_color_home_path[(currentPositionIndex+1)*-1];
+
+
+                while (Vector3.Distance(playerTransform.position, nextPosition) > 0.01f)
+                {
+                    playerTransform.position = Vector3.MoveTowards(playerTransform.position, nextPosition, movementSpeed * Time.deltaTime);
+                    yield return null;
+                }
+                currentPositionIndex++;
+                // currentPositionIndex = currentPositionIndex % 52;
+            }
+            isMoving = false;
+            Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
+        }   
     }
 }
