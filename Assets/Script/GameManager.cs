@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public List<GameObject> allPlayers;  
-    private List<GameObject> activePlayers = new List<GameObject>();  
-    private int currentPlayerIndex = 0;  
+    public List<GameObject> allPlayers;
+    private List<GameObject> activePlayers = new List<GameObject>();
+    public int currentPlayerIndex = 0;
 
     private void Start()
     {
         // Get the number of players from PlayerPrefs
-        int playerCount = PlayerPrefs.GetInt("NumPlayers", 2); 
+        int playerCount = PlayerPrefs.GetInt("NumPlayers", 2);
         SelectPlayers(playerCount);
     }
 
@@ -52,6 +52,6 @@ public class GameManager : MonoBehaviour
     // next player's turn
     public void NextTurn()
     {
-        currentPlayerIndex = (currentPlayerIndex + 1) % activePlayers.Count;  
+        currentPlayerIndex = (currentPlayerIndex+1) % activePlayers.Count;
     }
 }

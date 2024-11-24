@@ -12,14 +12,15 @@ public class ChessPiece : MonoBehaviour
     protected CircleCollider2D circleCollider;
     public bool isMoving;
     public bool isOutOfBase = false;
-
+    public GameManager MainGameManager;
     public Dice GameDie;
     public List<Vector3> playerBase;
     public int currentPositionIndex;
     public int firstIndex;
     public int shift;
-    public string [] color_array = {"green", "red", "blue", "yellow"};
-    public int [] mega_jump_array = {5, 18, 31, 44}; 
+    public int color;
+    public string[] color_array = { "green", "red", "blue", "yellow" };
+    public int[] mega_jump_array = { 5, 18, 31, 44 };
     public string current_color = "red";
     public bool have_moved_to_original_color = false; // checks whether the plane has skipped to it's color already
 
@@ -46,6 +47,15 @@ public class ChessPiece : MonoBehaviour
         currentPositionIndex = 0;
         Debug.Log("start index " + currentPositionIndex);
         playerTransform.position = playerBase[pieceNumber];
+        int color = startIndex switch
+        {
+            2 => 0,
+            15 => 1,
+            28 => 2,
+            41 => 3,
+            _ => 0
+
+        };
     }
     void OnMouseDown()
     {
@@ -54,23 +64,34 @@ public class ChessPiece : MonoBehaviour
         if (GameDie.Rolled)
         {
             Debug.Log("pressed");
-            if (isOutOfBase)
+
+            if (color == MainGameManager.currentPlayerIndex)
             {
-                Move(GameDie.randomDiceSide + 1);
-                GameDie.Rolled = false;
+
+
+                if (isOutOfBase)
+                {
+                    Move(GameDie.randomDiceSide + 1);
+                    GameDie.Rolled = false;
+                    MainGameManager.NextTurn();
+                }
+                else
+                {
+                    if (GameDie.randomDiceSide == 5)
+                    {
+                        Debug.Log("MOVING OUT OF BASE, GAMEDIE FALSE");
+
+                        GettingOutOfBase();
+                        isOutOfBase = true;
+                        GameDie.Rolled = false;
+                    }
+                }
+
             }
             else
             {
-                if (GameDie.randomDiceSide == 5)
-                {
-                    Debug.Log("MOVING OUT OF BASE, GAMEDIE FALSE");
-
-                    GettingOutOfBase();
-                    isOutOfBase = true;
-                    GameDie.Rolled = false;
-                }
+                Debug.Log($"not your turn: current player index {MainGameManager.currentPlayerIndex}, myIndex {color}");
             }
-
         }
     }
 
@@ -127,13 +148,13 @@ public class ChessPiece : MonoBehaviour
         string standing_color = color_array[color_index];
 
 
-        if(standing_color == current_color && have_moved_to_original_color == false)
+        if (standing_color == current_color && have_moved_to_original_color == false)
         {
             have_moved_to_original_color = true;
             if (currentPositionIndex == mega_jump_array[color_index])
             {
                 Debug.Log("IMHERE");
-                
+
                 isMoving = true;
 
                 int mega_jump_target_index = (currentPositionIndex + 14) % path.Count;
