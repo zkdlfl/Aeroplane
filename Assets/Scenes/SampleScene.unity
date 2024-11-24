@@ -205,7 +205,6 @@ MonoBehaviour:
   - {fileID: 1460172824}
   - {fileID: 1261094670}
   - {fileID: 34846346}
-  currentPlayerIndex: 0
 --- !u!4 &54129544
 Transform:
   m_ObjectHideFlags: 0
@@ -302,10 +301,6 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6516736460255478723, guid: 3eea3b665470b49d182db5c29cf17e73, type: 3}
-      propertyPath: MainGameManager
-      value: 
-      objectReference: {fileID: 54129543}
-    - target: {fileID: 6516736460255478723, guid: 3eea3b665470b49d182db5c29cf17e73, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1193802836}
@@ -400,10 +395,6 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1593436943616282989, guid: 8bcb7789e6b3342438d975b705828f46, type: 3}
-      propertyPath: MainGameManager
-      value: 
-      objectReference: {fileID: 54129543}
     - target: {fileID: 1593436943616282989, guid: 8bcb7789e6b3342438d975b705828f46, type: 3}
       propertyPath: playerTransform
       value: 
@@ -747,14 +738,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1806135161838701821, guid: 9e0a6f1a45437411ca6837f7bd93d8c5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1806135161838701821, guid: 9e0a6f1a45437411ca6837f7bd93d8c5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1806135161838701821, guid: 9e0a6f1a45437411ca6837f7bd93d8c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -795,10 +778,6 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 3417019225344794090, guid: 46acf1435eeb3eb4ca4beaf613695473, type: 3}
-      propertyPath: MainGameManager
-      value: 
-      objectReference: {fileID: 54129543}
     - target: {fileID: 3417019225344794090, guid: 46acf1435eeb3eb4ca4beaf613695473, type: 3}
       propertyPath: playerTransform
       value: 
@@ -1281,10 +1260,6 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5355536627488067521, guid: 11fae3d4f0a7442b682354c4f25ad054, type: 3}
-      propertyPath: MainGameManager
-      value: 
-      objectReference: {fileID: 54129543}
     - target: {fileID: 5355536627488067521, guid: 11fae3d4f0a7442b682354c4f25ad054, type: 3}
       propertyPath: playerTransform
       value: 
