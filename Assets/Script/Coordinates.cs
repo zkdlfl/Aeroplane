@@ -378,8 +378,8 @@ public class Coordinate : MonoBehaviour
         new Vector3(1.77f, 0.01f, 0),
         new Vector3(1.34f, 0.01f, 0),
         new Vector3(0.94f, 0.01f, 0),
-        new Vector3(0.91f, 0.01f, 0),
-        new Vector3(0.53f, 0.01f, 0), //
+        new Vector3(0.5f, 0.01f, 0),
+        new Vector3(-8.72f, 5.59f, 0)
     };
         paths["BlueHanger"] = new List<Vector3> // filled out
         {
