@@ -10,7 +10,7 @@ public class ChessPiece : MonoBehaviour
     public List<Vector3> path;
     public List<Vector3> current_color_home_path;
 
-    public List<Vector3> [] HomeBase;
+    public List<Vector3>[] HomeBase;
     protected SpriteRenderer spriteRenderer;
     protected CircleCollider2D circleCollider;
     public bool isMoving;
@@ -21,16 +21,20 @@ public class ChessPiece : MonoBehaviour
     public int currentPositionIndex;
     public int firstIndex;
     public int shift;
-    public string [] color_array = {"green", "red", "blue", "yellow"};
-    public int [] mega_jump_array = {5, 18, 31, 44}; 
-    public int [] home_base_array = {37, 50, 11, 24}; 
+    public string[] color_array = { "green", "red", "blue", "yellow" };
+    public int[] mega_jump_array = { 5, 18, 31, 44 };
+    public int[] home_base_array = { 37, 50, 11, 24 };
     public string current_color = "red";
     public bool have_moved_to_original_color = false; // checks whether the plane has skipped to it's color already
     public bool approach_home;
 
+    public GameManager mainGameManager;
+
 
     public int color_index = 1; // fix this part later
     public int more_steps = 0;
+
+    public int player_number;
 
     protected virtual void Start()
     {
@@ -44,12 +48,13 @@ public class ChessPiece : MonoBehaviour
 
         GameDie = FindObjectOfType<Dice>();
 
+
     }
 
     public void Initialize(int startIndex, List<Vector3> planePath, List<Vector3> baseCoordinates, List<Vector3> redHanger, int pieceNumber)
     {
         path = planePath;
-        HomeBase = new List<Vector3>[4];
+        HomeBase = new List<Vector3>[5];
         HomeBase[1] = redHanger;
 
         Debug.Log("initialize path size" + path.Count);
@@ -58,21 +63,33 @@ public class ChessPiece : MonoBehaviour
         currentPositionIndex = 0;
         Debug.Log("start index " + currentPositionIndex);
         playerTransform.position = playerBase[pieceNumber];
+        player_number = startIndex switch
+        {
+            2 => 0,
+            15 => 1,
+            28 => 2,
+            41 => 3,
+            _ => 0
+        };
+
+
     }
-    void OnMouseDown()
+    void OnMouseDown() //        if (mainGameManager.currentPlayerIndex == player_number)
     {
         Debug.Log("pressed1");
+        Debug.Log($"My turn. Me: {player_number}. off index: {mainGameManager.currentPlayerIndex}. ");
         if (GameDie.Rolled)
         {
             Debug.Log("pressed");
-            if (isOutOfBase)
+            if (isOutOfBase && (mainGameManager.currentPlayerIndex + 2) % mainGameManager.playerCount == player_number)
             {
                 Move(GameDie.randomDiceSide + 1);
                 GameDie.Rolled = false;
+
             }
             else
             {
-                if (GameDie.randomDiceSide == 5)
+                if (GameDie.randomDiceSide == 5 && mainGameManager.currentPlayerIndex == player_number)
                 {
                     Debug.Log("MOVING OUT OF BASE, GAMEDIE FALSE");
 
@@ -80,7 +97,13 @@ public class ChessPiece : MonoBehaviour
                     isOutOfBase = true;
                     GameDie.Rolled = false;
                 }
+
             }
+        }
+
+        else
+        {
+            Debug.Log($"Not  your turn Me: {player_number}. off index: {mainGameManager.currentPlayerIndex}. ");
         }
     }
 
@@ -116,18 +139,22 @@ public class ChessPiece : MonoBehaviour
         int before_hanger = home_base_array[color_index];
         current_color_home_path = HomeBase[color_index];
 
-        if(!approach_home){
-            if(currentPositionIndex + steps > before_hanger){
+        if (!approach_home)
+        {
+            if (currentPositionIndex + steps > before_hanger)
+            {
                 approach_home = true;
-                steps = (currentPositionIndex+steps) - before_hanger + 1;
+                steps = (currentPositionIndex + steps) - before_hanger + 1;
             }
         }
-        if(approach_home){
+        if (approach_home)
+        {
             more_steps = steps;
         }
 
-        if(more_steps == 0){
-            if(approach_home){more_steps = (currentPositionIndex + steps) - 50;}
+        if (more_steps == 0)
+        {
+            if (approach_home) { more_steps = (currentPositionIndex + steps) - 50; }
             for (int i = 0; i < steps; i++)
             {
                 Debug.Log("move size check " + currentPositionIndex);
@@ -153,13 +180,14 @@ public class ChessPiece : MonoBehaviour
             int standing_color_index = (find_current_color - 1 + color_array.Length) % color_array.Length;
             string standing_color = color_array[standing_color_index];
 
-            if(more_steps == 0){
-                if(standing_color == current_color)
+            if (more_steps == 0)
+            {
+                if (standing_color == current_color)
                 {
                     if (currentPositionIndex == mega_jump_array[standing_color_index])
                     {
                         Debug.Log("IMHERE");
-                        
+
                         isMoving = true;
 
                         int mega_jump_target_index = (currentPositionIndex + 14) % path.Count;
@@ -176,7 +204,7 @@ public class ChessPiece : MonoBehaviour
                     }
                     else
                     {
-                        if(have_moved_to_original_color == false)
+                        if (have_moved_to_original_color == false)
                         {
                             have_moved_to_original_color = true;
                             yield return StartCoroutine(MoveSteps(4));
@@ -186,17 +214,19 @@ public class ChessPiece : MonoBehaviour
             }
         }
         // Debug.Log(more_steps);
-        if(more_steps > 0){
-            if(currentPositionIndex > 0){
+        if (more_steps > 0)
+        {
+            if (currentPositionIndex > 0)
+            {
                 currentPositionIndex = -1;
             }
-            if(currentPositionIndex + more_steps >= 6){more_steps = 6;}
+            if (currentPositionIndex + more_steps >= 6) { more_steps = 6; }
             Debug.Log(currentPositionIndex);
 
             for (int i = 0; i < more_steps; i++)
             {
                 Debug.Log("move size check " + currentPositionIndex);
-                Vector3 nextPosition = current_color_home_path[currentPositionIndex+1];
+                Vector3 nextPosition = current_color_home_path[currentPositionIndex + 1];
 
                 while (Vector3.Distance(playerTransform.position, nextPosition) > 0.01f)
                 {
@@ -209,6 +239,6 @@ public class ChessPiece : MonoBehaviour
             more_steps = -1;
             isMoving = false;
             Debug.Log($"{gameObject.name} reached position {currentPositionIndex}");
-        }   
+        }
     }
 }
