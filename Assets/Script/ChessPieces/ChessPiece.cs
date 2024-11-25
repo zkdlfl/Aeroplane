@@ -85,11 +85,13 @@ public class ChessPiece : MonoBehaviour
             {
                 Move(GameDie.randomDiceSide + 1);
                 GameDie.Rolled = false;
+                isOutOfBase = true;
+
 
             }
             else
             {
-                if (GameDie.randomDiceSide == 5 && mainGameManager.currentPlayerIndex == player_number)
+                if (!isOutOfBase && GameDie.randomDiceSide == 5 && mainGameManager.currentPlayerIndex == player_number)
                 {
                     Debug.Log("MOVING OUT OF BASE, GAMEDIE FALSE");
 
